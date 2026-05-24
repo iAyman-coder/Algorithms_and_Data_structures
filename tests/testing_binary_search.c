@@ -17,7 +17,7 @@ int main(void) {
     int arr5[5] = {12, 45, 67, 89, 102};
     test_result(binary_search(arr5, 5, 200), -1, "Worst case upper bound");
 
-    int arr6[1] = {};
+    int arr6[1] = {};   // array initialize with 1 because you can't initialize an array with a zero
     test_result(binary_search(arr6, 0, 1), -1, "Worst case");
 
     return 0;
