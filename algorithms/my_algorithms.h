@@ -27,7 +27,7 @@ int linear_search(int arr[], size_t len, int target);
 int binary_search(int arr[], size_t len, int target);
 
 /**
- * @brief Sort arr from left to right by bringing the minimum value to the front of the array.
+ * @brief Sort arr from left to right by bringing the minimum values to the front of the array.
  * 
  * @param arr: Array that will be sorted.
  * @param len: Length of the array.
@@ -35,6 +35,16 @@ int binary_search(int arr[], size_t len, int target);
  * @return Pointer to the sorted array.
  */
 int *selection_sort(int arr[], size_t len);
+
+/**
+ * @brief Sort arr from right to left by swapping adjacent elements and pushing maximum values to the end of the array.
+ * 
+ * @param arr: Array that will be sorted.
+ * @param len: Length of the array.
+ * 
+ * @return Pointer to the sorted array.
+ */
+int *bubble_sort(int arr[], size_t len);
 
 
 #endif
