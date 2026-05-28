@@ -46,5 +46,15 @@ int *selection_sort(int arr[], size_t len);
  */
 int *bubble_sort(int arr[], size_t len);
 
+/**
+ * @brief Sort arr by divide and conquer via recursion.
+ * 
+ * @param arr: Array that will be sorted.
+ * @param len: Length of the array.
+ * 
+ * @return Pointer to the sorted array.
+ */
+int *merge_sort(int arr[], size_t len);
+
 
 #endif
