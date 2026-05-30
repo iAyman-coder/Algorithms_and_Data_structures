@@ -15,10 +15,6 @@ int interpolation_search(int arr[], size_t len, int target) {
     while (start_index < end_index) {
         int pos = calculate_interpolation_position(target, start_index, end_index, arr[start_index], arr[end_index]);
         
-        if (pos == start_index || pos == end_index) {
-            return (target == arr[pos]) ? pos : -1;
-        }
-
         if (target == arr[pos]) {
             return pos;
         }
