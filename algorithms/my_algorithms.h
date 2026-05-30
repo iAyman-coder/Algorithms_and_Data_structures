@@ -56,5 +56,16 @@ int *bubble_sort(int arr[], size_t len);
  */
 int *merge_sort(int arr[], size_t len);
 
+/**
+ * @brief Search for target in arr by calculating its index with a mathematical formula.
+ * 
+ * @param arr: Array that will be searched.
+ * @param len: Length of the array.
+ * @param target: The integer that will be looked for.
+ * 
+ * @return Index of target inside arr if found. -1 if not found.
+ */
+int interpolation_search(int arr[], size_t len, int target);
+
 
 #endif
