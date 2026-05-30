@@ -26,5 +26,9 @@ int interpolation_search(int arr[], size_t len, int target) {
         }
     }
 
+    if (start_index == end_index) {
+        return (target == arr[start_index]) ? start_index : -1;
+    }
+
     return -1;
 }
