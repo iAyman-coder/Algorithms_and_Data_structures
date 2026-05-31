@@ -67,5 +67,15 @@ int *merge_sort(int arr[], size_t len);
  */
 int interpolation_search(int arr[], size_t len, int target);
 
+/**
+ * @brief Sort arr by divide and conquer via choosing a pivot and doing recursion
+ * 
+ * @param arr: Array that will be sorted.
+ * @param len: Length of the array.
+ * 
+ * @return Pointer to the sorted array.
+ */
+int *quick_sort(int arr[], size_t len);
+
 
 #endif
