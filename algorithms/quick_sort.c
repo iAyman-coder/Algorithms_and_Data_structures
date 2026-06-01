@@ -2,6 +2,10 @@
 
 void find_pivot(int arr[], int start_index, int middle_index, int end_index) {
     if (arr[start_index] <= arr[middle_index] && arr[start_index] <= arr[end_index]) {
+        /*
+            This conditional only swaps elements at the middle and end if
+            the element at the middle is larger than the element at the end. 
+        */
         if (arr[middle_index] > arr[end_index]) {
             int temp = arr[middle_index];
             arr[middle_index] = arr[end_index];
@@ -9,6 +13,12 @@ void find_pivot(int arr[], int start_index, int middle_index, int end_index) {
         }
     }
     else if(arr[middle_index] <= arr[start_index] && arr[middle_index] <= arr[end_index]) {
+        /*
+            This conditional first swaps the element at the beginning with the
+            element at the middle.
+            Then, it swaps the element at the middle with the element at the end
+            if the element at the middle is larger than the one at the end.
+        */
         int temp = arr[start_index];
         arr[start_index] = arr[middle_index];
         arr[middle_index] = temp;
@@ -20,6 +30,12 @@ void find_pivot(int arr[], int start_index, int middle_index, int end_index) {
         }
     }
     else {
+        /*
+            This conditional first swaps the element at the beginning with the
+            element at the end.
+            Then, it swaps the element at the middle with the element at the end
+            if the element at the middle is larger than the one at the end. 
+        */
         int temp = arr[start_index];
         arr[start_index] = arr[end_index];
         arr[end_index] = temp;
@@ -39,10 +55,12 @@ int *quick_sort(int arr[], size_t len, int start_index, int end_index) {
 
     int middle_index = (start_index + end_index) / 2;
 
+    // Find the pivot and put it in the middle of the array.
     find_pivot(arr, start_index, middle_index, end_index); 
 
     int temp;
     
+    // Put the pivot at the end of the array.
     temp = arr[middle_index];
     arr[middle_index] = arr[end_index];
     arr[end_index] = temp;
@@ -52,6 +70,7 @@ int *quick_sort(int arr[], size_t len, int start_index, int end_index) {
     int pivot = arr[end_index];
     while (1) {
         if (i > j) {
+            /*  This conditional puts the pivot in its correct position  */
             temp = arr[i];
             arr[i] = arr[end_index];
             arr[end_index] = temp;
@@ -73,6 +92,8 @@ int *quick_sort(int arr[], size_t len, int start_index, int end_index) {
             i++;
         }
     }
+
+    /*  From here the index of the pivot is stored in the i variable  */
 
     size_t left_half_len = i - start_index;
     quick_sort(arr, left_half_len, start_index, i - 1);

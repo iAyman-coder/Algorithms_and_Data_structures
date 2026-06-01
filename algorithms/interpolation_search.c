@@ -12,6 +12,12 @@ int interpolation_search(int arr[], size_t len, int target) {
     int start_index = 0;
     int end_index = len - 1;
 
+    // Early return if target is out of boundaries
+    // This is valid because arrays passed to interpolation search are already sorted
+    if (target < arr[start_index] || target > arr[end_index]) {
+        return -1;
+    }
+
     while (start_index < end_index) {
         int pos = calculate_interpolation_position(target, start_index, end_index, arr[start_index], arr[end_index]);
         
