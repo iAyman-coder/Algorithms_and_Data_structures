@@ -75,7 +75,7 @@ int interpolation_search(int arr[], size_t len, int target);
  * 
  * @return Pointer to the sorted array.
  */
-int *quick_sort(int arr[], size_t len);
+int *quick_sort(int arr[], size_t len, int start_index, int end_index);
 
 
 #endif
