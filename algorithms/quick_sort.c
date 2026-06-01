@@ -38,6 +38,7 @@ int *quick_sort(int arr[], size_t len, int start_index, int end_index) {
     }
 
     int middle_index = (start_index + end_index) / 2;
+
     find_pivot(arr, start_index, middle_index, end_index); 
 
     int temp;
@@ -68,7 +69,7 @@ int *quick_sort(int arr[], size_t len, int start_index, int end_index) {
                 j--;
             }
         }
-        else if(arr[i] < pivot) {
+        else if(arr[i] <= pivot) {
             i++;
         }
     }
