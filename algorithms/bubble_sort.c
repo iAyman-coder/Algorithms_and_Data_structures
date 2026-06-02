@@ -1,8 +1,8 @@
 #include <stddef.h>
 
 int *bubble_sort(int arr[], size_t len) {
-    if (len == 0) {
-        // Immediate return for empty arrays
+    if (len <= 1) {
+        // Immediate return for single-element or empty arrays
         return arr;
     }
 
@@ -26,11 +26,10 @@ int *bubble_sort(int arr[], size_t len) {
     }
 
     /*
-        After breaking out of the while loop, we check if the array contains 
-        more than one element and the two left most elements are in their
-        correct position. If not, we swap them. 
+        After breaking out of the while loop, we check if the two leftmost
+        elements are in their correct positions. If not, we swap them.
     */
-    if (len > 1 && arr[0] > arr[1]) {
+    if (arr[0] > arr[1]) {
         int temp = arr[0];
         arr[0] = arr[1];
         arr[1] = temp;
