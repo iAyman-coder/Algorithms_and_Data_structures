@@ -18,7 +18,12 @@ int interpolation_search(int arr[], size_t len, int target) {
         return -1;
     }
 
-    while (start_index < end_index) {
+    while (start_index <= end_index) {
+        if (arr[start_index] == arr[end_index]) {
+            // Avoids zero division
+            return (target == arr[start_index]) ? start_index : -1;
+        }
+
         int pos = calculate_interpolation_position(target, start_index, end_index, arr[start_index], arr[end_index]);
         
         if (target == arr[pos]) {
@@ -30,10 +35,6 @@ int interpolation_search(int arr[], size_t len, int target) {
         else if (target > arr[pos]) {
             start_index = pos + 1;
         }
-    }
-
-    if (start_index == end_index) {
-        return (target == arr[start_index]) ? start_index : -1;
     }
 
     return -1;

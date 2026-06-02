@@ -1,9 +1,9 @@
 #include "../algorithms/my_algorithms.h"
-#include "custom_tests.c"
+#include "custom_tests.h"
 
 int main(void) {
     int arr1[10] = {12, 27, 34, 49, 53, 61, 78, 82, 95, 99};
-    test_result(interpolation_search(arr1, 10, 61), 5, "Random test 1");
+    test_result(interpolation_search(arr1, 10, 95), 8, "Random test 1");
     
     int arr2[8] = {3, 14, 29, 35, 42, 58, 66, 74};
     test_result(interpolation_search(arr2, 8, 14), 1, "Random test 2");
@@ -19,6 +19,27 @@ int main(void) {
 
     int arr6[1] = {};   // array initialize with 1 because you can't initialize an array with a zero
     test_result(interpolation_search(arr6, 0, 1), -1, "Empty array");
+
+    int arr7[5] = {10, 20, 30, 40, 50};
+    test_result(interpolation_search(arr7, 5, 5), -1, "Element out of bond: small");
+
+    int arr8[4] = {30, 35, 40, 45};
+    test_result(interpolation_search(arr8, 4, 50), -1, "Element out of bond: large");
+
+    int arr9[1] = {42};
+    test_result(interpolation_search(arr9, 1, 42), 0, "Single-element match");
+
+    int arr10[1] = {7};
+    test_result(interpolation_search(arr10, 1, 14), -1, "Single-element mismatch");
+
+    int arr11[5] = {7, 7, 7, 7, 7};
+    test_result(interpolation_search(arr11, 5, 7), 0, "Identical elements");
+
+    int arr12[6] = {1, 2, 3, 4, 5, 1000};
+    test_result(interpolation_search(arr12, 6, 4), 3, "Extreme outlier");
+
+    int arr13[10] = {1, 2, 2, 3, 4, 4, 4 ,5, 6, 6};
+    test_result(interpolation_search(arr13, 10, 2), 1, "Array with duplicates");
 
     return 0;
 }
