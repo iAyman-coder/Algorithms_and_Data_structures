@@ -1,5 +1,5 @@
 #include "../algorithms/my_algorithms.h"
-#include "custom_tests.c"
+#include "custom_tests.h"
 
 int main(void) {
     int arr1[10] = {42, 7, 89, 23, 11, 56, 94, 2, 67, 35};
@@ -21,6 +21,22 @@ int main(void) {
     int arr5[6] = {1, 2, 3, 4, 5, 6};
     int correct5[6] = {1, 2, 3, 4, 5, 6};
     test_array(bubble_sort(arr5, 6), correct5, 6, "Sorted array");
+
+    int arr6[1] = {};
+    int correct6[1] = {};
+    test_array(bubble_sort(arr6, 0), correct6, 0, "Empty array");
+
+    int arr7[1] = {9};
+    int correct7[1] = {9};
+    test_array(bubble_sort(arr7, 1), correct7, 1, "Single element");
+
+    int arr8[2] = {20, 10};
+    int correct8[2] = {10, 20};
+    test_array(bubble_sort(arr8, 2), correct8, 2, "Array of size 2");
+
+    int arr9[5] = {2, 3, 4, 5, 1};
+    int correct9[5] = {1, 2, 3, 4, 5};
+    test_array(bubble_sort(arr9, 5), correct9, 5, "Smallest element at the end");
 
     return 0;
 }

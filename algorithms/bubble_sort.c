@@ -1,9 +1,14 @@
 #include <stddef.h>
 
 int *bubble_sort(int arr[], size_t len) {
+    if (len == 0) {
+        // Immediate return for empty arrays
+        return arr;
+    }
+
     int end_index = len - 1;
 
-    while (end_index != 0) {
+    while (end_index > 0) {
         /*
             This for loop points at two elements in each iteration, and
             is responsible for swapping adjacent elements if the left
@@ -21,10 +26,11 @@ int *bubble_sort(int arr[], size_t len) {
     }
 
     /*
-        After breaking of the while loop, we check if the two left most
-        elements are in their correct position. If not, we swap them. 
+        After breaking out of the while loop, we check if the array contains 
+        more than one element and the two left most elements are in their
+        correct position. If not, we swap them. 
     */
-    if (arr[0] > arr[1]) {
+    if (len > 1 && arr[0] > arr[1]) {
         int temp = arr[0];
         arr[0] = arr[1];
         arr[1] = temp;
