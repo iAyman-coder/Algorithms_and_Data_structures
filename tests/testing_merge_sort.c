@@ -1,5 +1,5 @@
 #include "../algorithms/my_algorithms.h"
-#include "custom_tests.c"
+#include "custom_tests.h"
 
 int main(void) {
     int arr1[10] = {42, 7, 89, 23, 11, 56, 94, 2, 67, 35};
@@ -25,6 +25,27 @@ int main(void) {
     int arr6[9] = {42, 7, 89, 12, 55, 23, 91, 3, 66};
     int correct6[9] = {3, 7, 12, 23, 42, 55, 66, 89, 91};
     test_array(merge_sort(arr6, 9), correct6, 9, "Array with odd size");
+
+
+    int arr7[1] = {};
+    int correct7[1] = {};
+    test_array(merge_sort(arr7, 0), correct7, 0, "Empty array");
+
+    int arr8[1] = {8};
+    int correct8[1] = {8};
+    test_array(merge_sort(arr8, 1), correct8, 1, "Single element");
+
+    int arr9[2] = {2, 1};
+    int correct9[2] = {1, 2};
+    test_array(merge_sort(arr9, 2), correct9, 2, "Array of size 2");
+
+    int arr10[4] = {2, 1, 9, 8};
+    int correct10[4] = {1, 2, 8, 9};
+    test_array(merge_sort(arr10, 4), correct10, 4, "Left half elements are all smaller than right half elements");
+
+    int arr11[4] = {9, 8, 2, 1};
+    int correct11[4] = {1, 2, 8, 9};
+    test_array(merge_sort(arr11, 4), correct11, 4, "right half elements are all smaller than left half elements");
 
     return 0;
 }
