@@ -1,6 +1,11 @@
 #include <stddef.h>
 
 int *selection_sort(int arr[], size_t len) {
+    if (len == 0) {
+        // Immediate return for empty arrays
+        return arr;
+    }
+
     int i = 0;
 
     while (1) {
