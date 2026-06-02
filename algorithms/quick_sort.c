@@ -53,7 +53,7 @@ int *quick_sort(int arr[], size_t len, int start_index, int end_index) {
         return arr;
     }
 
-    int middle_index = (start_index + end_index) / 2;
+    int middle_index = start_index + (end_index - start_index) / 2;
 
     // Find the pivot and put it in the middle of the array.
     find_pivot(arr, start_index, middle_index, end_index); 

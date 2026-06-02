@@ -1,5 +1,5 @@
 #include "../algorithms/my_algorithms.h"
-#include "custom_tests.c"
+#include "custom_tests.h"
 
 int main(void) {
     int arr1[10] = {42, 7, 89, 23, 11, 56, 94, 2, 67, 35};
@@ -25,6 +25,19 @@ int main(void) {
     int arr6[9] = {42, 7, 89, 12, 55, 23, 91, 3, 66};
     int correct6[9] = {3, 7, 12, 23, 42, 55, 66, 89, 91};
     test_array(quick_sort(arr6, 9, 0, 8), correct6, 9, "Array with odd size");
+
+
+    int arr7[1] = {};
+    int correct7[1] = {};
+    test_array(quick_sort(arr7, 0, 0, 0), correct7, 0, "Empty array");
+
+    int arr8[1] = {32};
+    int correct8[1] = {32};
+    test_array(quick_sort(arr8, 1, 0, 0), correct8, 1, "Single element");
+
+    int arr9[6] = {6, 6, 6, 6, 6, 6};
+    int correct9[6] = {6, 6, 6, 6, 6, 6};
+    test_array(quick_sort(arr9, 6, 0, 5), correct9, 6, "Identical elements");
 
     return 0;
 }
