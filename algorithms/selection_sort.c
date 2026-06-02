@@ -1,18 +1,14 @@
 #include <stddef.h>
 
 int *selection_sort(int arr[], size_t len) {
-    if (len == 0) {
-        // Immediate return for empty arrays
+    if (len <= 1) {
+        // Immediate return for single-element or empty arrays
         return arr;
     }
 
     int i = 0;
 
-    while (1) {
-        if (i == len - 1) {
-            break;
-        }
-
+    while (i < len - 1) {
         // The index of the minimum value for this iteration.
         int min_index = i;
 
