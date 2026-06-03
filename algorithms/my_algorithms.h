@@ -77,5 +77,16 @@ int interpolation_search(int arr[], size_t len, int target);
  */
 int *quick_sort(int arr[], size_t len, int start_index, int end_index);
 
+/**
+ * @brief Sort an array by swapping elements to the right that are larger than the element we are pointing to
+ * in this iteration.
+ * 
+ * @param arr: Array that will be sorted.
+ * @param len: Length of the array.
+ * 
+ * @return Pointer to the sorted array.
+ */
+int *insertion_sort(int arr[], size_t len);
+
 
 #endif
