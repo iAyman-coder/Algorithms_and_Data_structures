@@ -50,6 +50,7 @@ void find_pivot(int arr[], int start_index, int middle_index, int end_index) {
 
 int *quick_sort(int arr[], size_t len, int start_index, int end_index) {
     if (len <= 1) {
+        // Immediate return for single-element or empty arrays.
         return arr;
     }
 

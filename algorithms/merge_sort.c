@@ -53,6 +53,7 @@ int *merge(int arr[], int left_half[], int right_half[], size_t left_len, size_t
 
 int *merge_sort(int arr[], size_t len) {
     if (len <= 1) {
+        // Immediate return for single-element or empty arrays.
         return arr;
     }
 
