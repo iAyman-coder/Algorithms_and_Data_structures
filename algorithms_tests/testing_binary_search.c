@@ -26,7 +26,7 @@ int main(void) {
     int arr8[7] = {10, 23, 32, 45, 52, 76, 88};
     test_result(binary_search(arr8, 7, 88), 6, "Last element");
 
-    int arr9[1] = {};   // Array initialize with 1 because you can't initialize an array with a zero
+    int arr9[1] = {};   // Array initialize with 1 because you can't initialize an array with a zero.
     test_result(binary_search(arr9, 0, 9), -1, "Empty array");
 
     int arr10[1] = {7};

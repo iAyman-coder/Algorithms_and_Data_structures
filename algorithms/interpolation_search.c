@@ -12,15 +12,15 @@ int interpolation_search(int arr[], size_t len, int target) {
     int start_index = 0;
     int end_index = len - 1;
 
-    // Early return if target is out of boundaries
-    // This is valid because arrays passed to interpolation search are already sorted
+    // Early return if target is out of boundaries.
+    // This is valid because arrays passed to interpolation search are already sorted.
     if (target < arr[start_index] || target > arr[end_index]) {
         return -1;
     }
 
     while (start_index <= end_index) {
         if (arr[start_index] == arr[end_index]) {
-            // Avoids zero division
+            // Avoids zero division.
             return (target == arr[start_index]) ? start_index : -1;
         }
 

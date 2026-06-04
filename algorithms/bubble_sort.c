@@ -2,7 +2,7 @@
 
 int *bubble_sort(int arr[], size_t len) {
     if (len <= 1) {
-        // Immediate return for single-element or empty arrays
+        // Immediate return for single-element or empty arrays.
         return arr;
     }
 

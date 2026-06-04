@@ -12,19 +12,19 @@ int main(void) {
     test_result(interpolation_search(arr3, 10, 7), 6, "Best case");
     
     int arr4[10] = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512};
-    test_result(interpolation_search(arr4, 10, 256), 8, "Worst case: exponentially increasing elements");
+    test_result(interpolation_search(arr4, 10, 256), 8, "Worst case: Exponentially increasing elements");
 
     int arr5[5] = {12, 45, 67, 89, 102};
     test_result(interpolation_search(arr5, 5, 200), -1, "Element doesn't exist");
 
-    int arr6[1] = {};   // Array initialize with 1 because you can't initialize an array with a zero
+    int arr6[1] = {};   // Array initialize with 1 because you can't initialize an array with a zero.
     test_result(interpolation_search(arr6, 0, 1), -1, "Empty array");
 
     int arr7[5] = {10, 20, 30, 40, 50};
-    test_result(interpolation_search(arr7, 5, 5), -1, "Element out of bound: small");
+    test_result(interpolation_search(arr7, 5, 5), -1, "Element out of bound: Small");
 
     int arr8[4] = {30, 35, 40, 45};
-    test_result(interpolation_search(arr8, 4, 50), -1, "Element out of bound: large");
+    test_result(interpolation_search(arr8, 4, 50), -1, "Element out of bound: Large");
 
     int arr9[1] = {42};
     test_result(interpolation_search(arr9, 1, 42), 0, "Single-element match");

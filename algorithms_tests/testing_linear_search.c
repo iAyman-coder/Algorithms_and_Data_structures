@@ -14,7 +14,7 @@ int main(void) {
     int arr4[5] = {80, 29, 57, 26, 90};
     test_result(linear_search(arr4, 5, 13), -1, "Worst case: Element doesn't exist");
 
-    int arr5[1] = {};   // Array initialize with 1 because you can't initialize an array with a zero
+    int arr5[1] = {};   // Array initialize with 1 because you can't initialize an array with a zero.
     test_result(linear_search(arr5, 0, 1), -1, "Empty array");
 
     int arr6[1] = {42};

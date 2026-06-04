@@ -45,7 +45,7 @@ int main(void) {
 
     int arr11[4] = {9, 8, 2, 1};
     int correct11[4] = {1, 2, 8, 9};
-    test_array(merge_sort(arr11, 4), correct11, 4, "right half elements are all smaller than left half elements");
+    test_array(merge_sort(arr11, 4), correct11, 4, "Right half elements are all smaller than left half elements");
     
     int arr12[5] = {-3, -1, -5, -2, -4};
     int correct12[5] = {-5, -4, -3, -2, -1};

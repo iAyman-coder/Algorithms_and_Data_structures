@@ -71,7 +71,7 @@ int *quick_sort(int arr[], size_t len, int start_index, int end_index) {
     int pivot = arr[end_index];
     while (1) {
         if (i > j) {
-            /*  This conditional puts the pivot in its correct position  */
+            /*  This conditional puts the pivot in its correct position.  */
             temp = arr[i];
             arr[i] = arr[end_index];
             arr[end_index] = temp;
@@ -94,7 +94,7 @@ int *quick_sort(int arr[], size_t len, int start_index, int end_index) {
         }
     }
 
-    /*  From here the index of the pivot is stored in the i variable  */
+    /*  From here the index of the pivot is stored in the i variable.  */
 
     size_t left_half_len = i - start_index;
     quick_sort(arr, left_half_len, start_index, i - 1);
