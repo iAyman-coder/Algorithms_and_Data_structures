@@ -12,19 +12,19 @@ int main(void) {
     test_result(interpolation_search(arr3, 10, 7), 6, "Best case");
     
     int arr4[10] = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512};
-    test_result(interpolation_search(arr4, 10, 256), 8, "Worst case exponentially increasing elements");
+    test_result(interpolation_search(arr4, 10, 256), 8, "Worst case: exponentially increasing elements");
 
     int arr5[5] = {12, 45, 67, 89, 102};
     test_result(interpolation_search(arr5, 5, 200), -1, "Element doesn't exist");
 
-    int arr6[1] = {};   // array initialize with 1 because you can't initialize an array with a zero
+    int arr6[1] = {};   // Array initialize with 1 because you can't initialize an array with a zero
     test_result(interpolation_search(arr6, 0, 1), -1, "Empty array");
 
     int arr7[5] = {10, 20, 30, 40, 50};
-    test_result(interpolation_search(arr7, 5, 5), -1, "Element out of bond: small");
+    test_result(interpolation_search(arr7, 5, 5), -1, "Element out of bound: small");
 
     int arr8[4] = {30, 35, 40, 45};
-    test_result(interpolation_search(arr8, 4, 50), -1, "Element out of bond: large");
+    test_result(interpolation_search(arr8, 4, 50), -1, "Element out of bound: large");
 
     int arr9[1] = {42};
     test_result(interpolation_search(arr9, 1, 42), 0, "Single-element match");
@@ -33,13 +33,16 @@ int main(void) {
     test_result(interpolation_search(arr10, 1, 14), -1, "Single-element mismatch");
 
     int arr11[5] = {7, 7, 7, 7, 7};
-    test_result(interpolation_search(arr11, 5, 7), 0, "Identical elements");
+    test_result(interpolation_search(arr11, 5, 7), 0, "Array with identical elements");
 
     int arr12[6] = {1, 2, 3, 4, 5, 1000};
-    test_result(interpolation_search(arr12, 6, 4), 3, "Extreme outlier");
+    test_result(interpolation_search(arr12, 6, 4), 3, "Array with extreme outlier");
 
     int arr13[10] = {1, 2, 2, 3, 4, 4, 4 ,5, 6, 6};
     test_result(interpolation_search(arr13, 10, 2), 1, "Array with duplicates");
+
+    int arr14[5] = {-15, -2, 0, 3, 14};
+    test_result(interpolation_search(arr14, 5, -2), 1, "Array with negative numbers and zeros");
 
     return 0;
 }

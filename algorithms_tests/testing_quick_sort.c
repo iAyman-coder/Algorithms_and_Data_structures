@@ -27,17 +27,25 @@ int main(void) {
     test_array(quick_sort(arr6, 9, 0, 8), correct6, 9, "Array with odd size");
 
 
-    int arr7[1] = {};
+    int arr7[1] = {};   // Array initialized with 1 because you can't initialize an array with a zero.
     int correct7[1] = {};
     test_array(quick_sort(arr7, 0, 0, 0), correct7, 0, "Empty array");
 
     int arr8[1] = {32};
     int correct8[1] = {32};
-    test_array(quick_sort(arr8, 1, 0, 0), correct8, 1, "Single element");
+    test_array(quick_sort(arr8, 1, 0, 0), correct8, 1, "Array with single element");
 
     int arr9[6] = {6, 6, 6, 6, 6, 6};
     int correct9[6] = {6, 6, 6, 6, 6, 6};
-    test_array(quick_sort(arr9, 6, 0, 5), correct9, 6, "Identical elements");
+    test_array(quick_sort(arr9, 6, 0, 5), correct9, 6, "Array with identical elements");
+    
+    int arr10[5] = {-3, -1, -5, -2, -4};
+    int correct10[5] = {-5, -4, -3, -2, -1};
+    test_array(quick_sort(arr10, 5, 0, 4), correct10, 5, "Array with negative numbers");
+
+    int arr11[5] = {0, -10, 5, -2, 3};
+    int correct11[5] = {-10, -2, 0, 3, 5};
+    test_array(quick_sort(arr11, 5, 0, 4), correct11, 5, "Array with positive and negative numbers");
 
     return 0;
 }

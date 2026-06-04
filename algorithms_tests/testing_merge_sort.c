@@ -27,13 +27,13 @@ int main(void) {
     test_array(merge_sort(arr6, 9), correct6, 9, "Array with odd size");
 
 
-    int arr7[1] = {};
+    int arr7[1] = {};   // Array initialized with 1 because you can't initialize an array with a zero.
     int correct7[1] = {};
     test_array(merge_sort(arr7, 0), correct7, 0, "Empty array");
 
     int arr8[1] = {8};
     int correct8[1] = {8};
-    test_array(merge_sort(arr8, 1), correct8, 1, "Single element");
+    test_array(merge_sort(arr8, 1), correct8, 1, "Array with single element");
 
     int arr9[2] = {2, 1};
     int correct9[2] = {1, 2};
@@ -46,6 +46,14 @@ int main(void) {
     int arr11[4] = {9, 8, 2, 1};
     int correct11[4] = {1, 2, 8, 9};
     test_array(merge_sort(arr11, 4), correct11, 4, "right half elements are all smaller than left half elements");
+    
+    int arr12[5] = {-3, -1, -5, -2, -4};
+    int correct12[5] = {-5, -4, -3, -2, -1};
+    test_array(merge_sort(arr12, 5), correct12, 5, "Array with negative numbers");
+
+    int arr13[5] = {0, -10, 5, -2, 3};
+    int correct13[5] = {-10, -2, 0, 3, 5};
+    test_array(merge_sort(arr13, 5), correct13, 5, "Array with positive and negative numbers");
 
     return 0;
 }

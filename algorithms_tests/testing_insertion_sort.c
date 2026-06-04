@@ -22,13 +22,13 @@ int main(void) {
     int correct5[6] = {1, 2, 3, 4, 5, 6};
     test_array(insertion_sort(arr5, 6), correct5, 6, "Sorted array");
 
-    int arr6[1] = {};
+    int arr6[1] = {};   // Array initialized with 1 because you can't initialize an array with a zero.
     int correct6[1] = {};
     test_array(insertion_sort(arr6, 0), correct6, 0, "Empty array");
 
     int arr7[1] = {42};
     int correct7[1] = {42};
-    test_array(insertion_sort(arr7, 1), correct7, 1, "Single element");
+    test_array(insertion_sort(arr7, 1), correct7, 1, "Array with single element");
 
     int arr8[2] = {5, 2};
     int correct8[2] = {2, 5};
@@ -40,11 +40,11 @@ int main(void) {
 
     int arr10[5] = {-3, -1, -5, -2, -4};
     int correct10[5] = {-5, -4, -3, -2, -1};
-    test_array(insertion_sort(arr10, 5), correct10, 5, "Negative numbers");
+    test_array(insertion_sort(arr10, 5), correct10, 5, "Array with negative numbers");
 
     int arr11[5] = {0, -10, 5, -2, 3};
     int correct11[5] = {-10, -2, 0, 3, 5};
-    test_array(insertion_sort(arr11, 5), correct11, 5, "Mixed positive and negative numbers");
+    test_array(insertion_sort(arr11, 5), correct11, 5, "Array with positive and negative numbers");
 
     return 0;
 }
