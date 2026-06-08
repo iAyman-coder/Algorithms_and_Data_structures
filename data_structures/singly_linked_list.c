@@ -58,8 +58,36 @@ node *insert_node(node *head, node *nd, int pos) {
     return head;
 }
 
-int remove_node() {
-    
+node *remove_node(node *head, int pos) {
+    if (pos == 0) {
+        node *new_head = head->next;
+        free(head);
+        return new_head;
+    }
+
+    node *nd = head;
+    node *prev_node = NULL;
+
+    int i = 1;
+    while (nd->next != NULL) {
+        prev_node = nd;
+        nd = nd->next;
+
+        if (i == pos) {
+            break;
+        }
+        
+        i++;
+    }
+
+    if (i != pos) {
+        return head;
+    }
+
+    prev_node->next = nd->next;
+    free(nd);
+
+    return head;
 }
 
 int *search_linked_list() {
