@@ -31,8 +31,31 @@ node *make_linked_list(char arr[], size_t len) {
     return head;
 }
 
-int insert_node() {
-    
+node *insert_node(node *head, node *nd, int pos) {
+    if (pos == 0) {
+        nd->next = head;
+        return nd;
+    }
+
+    node *prev_node = head;
+    node *next_node = NULL;
+
+    int i = 1;
+    while (prev_node->next != NULL) {
+        if (i == pos) {
+            break;
+        }
+
+        prev_node = prev_node->next;
+
+        i++;
+    }
+
+    next_node = prev_node->next;
+    nd->next = next_node;
+    prev_node->next = nd;
+
+    return head;
 }
 
 int remove_node() {
