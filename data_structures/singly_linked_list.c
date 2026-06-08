@@ -90,8 +90,20 @@ node *remove_node(node *head, int pos) {
     return head;
 }
 
-int *search_linked_list() {
-    
+int *search_linked_list(node *head, char target) {
+    node *nd = head;
+
+    while (1) {
+        if (nd->data == target) {
+            return nd;
+        }
+        else if (nd->next == NULL) {
+            return NULL;
+        }
+        else {
+            nd = nd->next;
+        }
+    }
 }
 
 void delete_linked_list() {
