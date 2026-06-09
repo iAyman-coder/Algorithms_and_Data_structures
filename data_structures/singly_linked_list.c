@@ -106,10 +106,35 @@ int *search_linked_list(node *head, char target) {
     }
 }
 
-void delete_linked_list() {
-    
+void delete_linked_list(node *head) {
+    node *nd = head;
+    node *next_node = nd->next;
+
+    while (1) {
+        free(nd);
+        nd = next_node;
+
+        if (nd == NULL) {
+            break;
+        }
+
+        next_node = nd->next;
+    }
+}
+
+void print_linked_list(node *head) {
+    node *nd = head;
+
+    printf("Pos | Data\n");
+
+    int i = 0;
+    while (nd != NULL) {
+        printf("%i | %c \n", i, nd->data);
+        nd = nd->next;
+        i++;
+    }
 }
 
 int main(void) {
-   
+
 }
