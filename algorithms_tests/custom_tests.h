@@ -1,7 +1,8 @@
 #ifndef CUSTOMTESTS_H
 #define CUSTOMTESTS_H
 
-#include <stddef.h>
+
+#include <stddef.h>    // This is included for the size_t data type.
 
 /**
  * @brief Test an integer returned by a function.
