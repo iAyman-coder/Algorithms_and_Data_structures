@@ -1,44 +1,43 @@
 #include <stdlib.h>
-#include <stdio.h>
 
-typedef struct node {
+typedef struct Node {
     char data;
-    struct node *next;
-}node;
+    struct Node *next;
+}Node;
 
 
-node *make_linked_list(char arr[], size_t len) {
-    node *prev_node = NULL;
-    node *head = NULL;
+Node *make_linked_list(char arr[], size_t len) {
+    Node *prev_node = NULL;
+    Node *head = NULL;
 
     for (int i = 0; i < len; i++) {
-        node *nd = malloc(sizeof(node));
+        Node *current_node = malloc(sizeof(Node));
 
-        nd->data = arr[i];
-        nd->next = NULL;
+        current_node->data = arr[i];
+        current_node->next = NULL;
 
         if (prev_node != NULL) {
-            prev_node->next = nd;
+            prev_node->next = current_node;
         }
 
         if (i == 0) {
-            head = nd;
+            head = current_node;
         }
 
-        prev_node = nd;
+        prev_node = current_node;
     }
 
     return head;
 }
 
-node *insert_node(node *head, node *nd, int pos) {
+Node *insert_node(Node *head, Node *new_node, int pos) {
     if (pos == 0) {
-        nd->next = head;
-        return nd;
+        new_node->next = head;
+        return new_node;
     }
 
-    node *prev_node = head;
-    node *next_node = NULL;
+    Node *prev_node = head;
+    Node *next_node = NULL;
 
     int i = 1;
     while (prev_node->next != NULL) {
@@ -52,26 +51,26 @@ node *insert_node(node *head, node *nd, int pos) {
     }
 
     next_node = prev_node->next;
-    nd->next = next_node;
-    prev_node->next = nd;
+    new_node->next = next_node;
+    prev_node->next = new_node;
 
     return head;
 }
 
-node *remove_node(node *head, int pos) {
+Node *remove_node(Node *head, int pos) {
     if (pos == 0) {
-        node *new_head = head->next;
+        Node *new_head = head->next;
         free(head);
         return new_head;
     }
 
-    node *nd = head;
-    node *prev_node = NULL;
+    Node *current_node = head;
+    Node *prev_node = NULL;
 
     int i = 1;
-    while (nd->next != NULL) {
-        prev_node = nd;
-        nd = nd->next;
+    while (current_node->next != NULL) {
+        prev_node = current_node;
+        current_node = current_node->next;
 
         if (i == pos) {
             break;
@@ -84,57 +83,42 @@ node *remove_node(node *head, int pos) {
         return head;
     }
 
-    prev_node->next = nd->next;
-    free(nd);
+    prev_node->next = current_node->next;
+    free(current_node);
 
     return head;
 }
 
-int *search_linked_list(node *head, char target) {
-    node *nd = head;
+Node *search_linked_list(Node *head, char target) {
+    Node *current_node = head;
 
     while (1) {
-        if (nd->data == target) {
-            return nd;
+        if (current_node->data == target) {
+            return current_node;
         }
-        else if (nd->next == NULL) {
+        else if (current_node->next == NULL) {
             return NULL;
         }
         else {
-            nd = nd->next;
+            current_node = current_node->next;
         }
     }
 }
 
-void delete_linked_list(node *head) {
-    node *nd = head;
-    node *next_node = nd->next;
+Node *delete_linked_list(Node *head) {
+    Node *current_node = head;
+    Node *next_node = current_node->next;
 
     while (1) {
-        free(nd);
-        nd = next_node;
+        free(current_node);
+        current_node = next_node;
 
-        if (nd == NULL) {
+        if (current_node == NULL) {
             break;
         }
 
-        next_node = nd->next;
+        next_node = current_node->next;
     }
-}
 
-void print_linked_list(node *head) {
-    node *nd = head;
-
-    printf("Pos | Data\n");
-
-    int i = 0;
-    while (nd != NULL) {
-        printf("%i | %c \n", i, nd->data);
-        nd = nd->next;
-        i++;
-    }
-}
-
-int main(void) {
-
+    return NULL;
 }
