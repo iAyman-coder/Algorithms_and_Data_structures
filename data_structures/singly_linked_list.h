@@ -4,6 +4,9 @@
 
 #include <stddef.h>    // This is included for the size_t data type.
 
+/**
+ * @brief Node for a singly linked list.
+ */
 typedef struct Node {
     char data;
     struct Node *next;
