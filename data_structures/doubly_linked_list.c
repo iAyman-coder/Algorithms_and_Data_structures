@@ -187,7 +187,30 @@ dNode *remove_dnode(dNode *head_or_tail, char *direction, int pos) {
 }
 
 dNode *search_dlinked_list(dNode *head_or_tail, char *direction, char target) {
+    int direction_forward = strcasecmp(direction, "forward");
+    int direction_backward = strcasecmp(direction, "backward");
 
+    if (direction_forward != 0 && direction_backward != 0) {
+        printf("Search did not happen.\n");
+        printf("Direction string was unrecognized. Make sure you entered 'forward' or 'backward' correctly.\n");
+        return NULL;
+    }
+
+    dNode *current_node = head_or_tail;
+
+    while (current_node != NULL) {
+        if (current_node->data == target) {
+            return current_node;
+        }
+        else if (direction_forward == 0) {
+            current_node = current_node->next;
+        }
+        else if (direction_backward == 0) {
+            current_node = current_node->prev;
+        }
+    }
+
+    return NULL;
 }
 
 dNode *delete_dlinked_list(dNode *head_or_tail, char *direction) {
