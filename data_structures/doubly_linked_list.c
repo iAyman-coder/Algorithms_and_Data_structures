@@ -41,7 +41,7 @@ dNode **make_dlinked_list(char arr[], size_t len, dNode *head_and_tail_ptrs[2]) 
 }
 
 dNode *insert_dnode(dNode *head_or_tail, char *direction, dNode *new_node, int pos) {
-    if (strcasecmp(direction, "forward") == 0) {
+    if (strcasecmp(direction, "forward") == 0 && head_or_tail->prev == NULL) {
         if (pos == 0) {
             new_node->next = head_or_tail;
             new_node->prev = NULL;
@@ -72,7 +72,7 @@ dNode *insert_dnode(dNode *head_or_tail, char *direction, dNode *new_node, int p
 
         return head_or_tail;
     }
-    else if (strcasecmp(direction, "backward") == 0) {
+    else if (strcasecmp(direction, "backward") == 0 && head_or_tail->next == NULL) {
         if (pos == 0) {
             new_node->next = NULL;
             new_node->prev = head_or_tail;
@@ -111,7 +111,7 @@ dNode *insert_dnode(dNode *head_or_tail, char *direction, dNode *new_node, int p
 }
 
 dNode *remove_dnode(dNode *head_or_tail, char *direction, int pos) {
-    if (strcasecmp(direction, "forward") == 0) {
+    if (strcasecmp(direction, "forward") == 0 && head_or_tail->prev == NULL) {
         if (pos == 0) {
             dNode *new_head = head_or_tail->next;
             new_head->prev = NULL;
@@ -145,7 +145,7 @@ dNode *remove_dnode(dNode *head_or_tail, char *direction, int pos) {
 
         return head_or_tail;
     }
-    else if (strcasecmp(direction, "forward") == 0) {
+    else if (strcasecmp(direction, "backward") == 0 && head_or_tail->next == NULL) {
         if (pos == 0) {
             dNode *new_tail = head_or_tail->prev;
             new_tail->next = NULL;
@@ -214,7 +214,7 @@ dNode *search_dlinked_list(dNode *head_or_tail, char *direction, char target) {
 }
 
 dNode *delete_dlinked_list(dNode *head_or_tail, char *direction) {
-    if (strcasecmp(direction, "forward") == 0) {
+    if (strcasecmp(direction, "forward") == 0 && head_or_tail->prev == NULL) {
         dNode *current_node = head_or_tail;
         dNode *next_node;
 
@@ -228,7 +228,7 @@ dNode *delete_dlinked_list(dNode *head_or_tail, char *direction) {
 
         return NULL;
     }
-    else if (strcasecmp(direction, "backward") == 0) {
+    else if (strcasecmp(direction, "backward") == 0 && head_or_tail->next == NULL) {
         dNode *current_node = head_or_tail;
         dNode *prev_node;
 
