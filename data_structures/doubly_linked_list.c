@@ -214,5 +214,37 @@ dNode *search_dlinked_list(dNode *head_or_tail, char *direction, char target) {
 }
 
 dNode *delete_dlinked_list(dNode *head_or_tail, char *direction) {
+    if (strcasecmp(direction, "forward") == 0) {
+        dNode *current_node = head_or_tail;
+        dNode *next_node;
 
+        while (current_node != NULL) {
+            next_node = current_node->next;
+
+            free(current_node);
+
+            current_node = next_node;
+        }
+
+        return NULL;
+    }
+    else if (strcasecmp(direction, "backward") == 0) {
+        dNode *current_node = head_or_tail;
+        dNode *prev_node;
+
+        while (current_node != NULL) {
+            prev_node = current_node->prev;
+
+            free(current_node);
+
+            current_node = prev_node;
+        }
+
+        return NULL;
+    }
+    else {
+        printf("Doubly linked list was not delted.\n");
+        printf("Direction string was unrecognized. Make sure you entered 'forward' or 'backward' correctly.\n");
+        return NULL;
+    }
 }
