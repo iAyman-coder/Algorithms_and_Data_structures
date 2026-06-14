@@ -55,8 +55,19 @@ dNode *insert_new_head(dNode *head, dNode *new_node) {
     return new_node;
 }
 
-dNode *insert_new_tail() {
+dNode *insert_new_tail(dNode *tail, dNode *new_node) {
+    if (tail == NULL) {
+        printf("Node was not inserted.\n");
+        printf("tail must not be NULL.\n");
+        return tail;
+    }
 
+    new_node->next = NULL;
+    new_node->prev = tail;
+
+    tail->next = new_node;
+
+    return new_node;
 }
 
 dNode *insert_dnode_after_head() {
