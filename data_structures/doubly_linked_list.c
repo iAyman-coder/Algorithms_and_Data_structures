@@ -46,6 +46,11 @@ dNode *insert_new_head(dNode *head, dNode *new_node) {
         printf("head must not be NULL.\n");
         return head;
     }
+    else if (new_node == NULL) {
+        printf("Node was not inserted.\n");
+        printf("new_node must not be NULL.\n");
+        return head;
+    }
 
     new_node->next = head;
     new_node->prev = NULL;
@@ -61,6 +66,11 @@ dNode *insert_new_tail(dNode *tail, dNode *new_node) {
         printf("tail must not be NULL.\n");
         return tail;
     }
+    else if (new_node == NULL) {
+        printf("Node was not inserted.\n");
+        printf("new_node must not be NULL.\n");
+        return tail;
+    }
 
     new_node->next = NULL;
     new_node->prev = tail;
@@ -70,12 +80,90 @@ dNode *insert_new_tail(dNode *tail, dNode *new_node) {
     return new_node;
 }
 
-dNode *insert_dnode_after_head() {
+dNode *insert_dnode_after_head(dNode *head, size_t list_len, dNode *new_node, int pos) {
+    if (head == NULL) {
+        printf("Node was not inserted.\n");
+        printf("head must not be NULL.\n");
+        return head;
+    }
+    else if (list_len <= 0) {
+        printf("Node was not inserted.\n");
+        printf("list_len of (%i) is invalid.\n", list_len);
+        return head;
+    }
+    else if (new_node == NULL) {
+        printf("Node was not inserted.\n");
+        printf("new_node must not be NULL.\n");
+        return head;
+    }
+    else if (pos < 1 || pos > list_len - 1) {
+        printf("Node was not inserted.\n");
+        printf("pos of (%i) is invalid.\n", pos);
+        return head;
+    }
 
+    dNode *prev_node = head;
+
+    for (int i = 1; i < list_len; i++) {
+        if (i == pos) {
+            break;
+        }
+        
+        prev_node = prev_node->next;
+    }
+
+    dNode *next_node = prev_node->next;
+
+    prev_node->next = new_node;
+    new_node->prev = prev_node;
+
+    next_node->prev = new_node;
+    new_node->next = next_node;
+
+    return head;
 }
 
-dNode *insert_dnode_before_tail() {
+dNode *insert_dnode_before_tail(dNode *tail, size_t list_len, dNode *new_node, int pos) {
+    if (tail == NULL) {
+        printf("Node was not inserted.\n");
+        printf("tail must not be NULL.\n");
+        return tail;
+    }
+    else if (list_len <= 0) {
+        printf("Node was not inserted.\n");
+        printf("list_len of (%i) is invalid.\n", list_len);
+        return tail;
+    }
+    else if (new_node == NULL) {
+        printf("Node was not inserted.\n");
+        printf("new_node must not be NULL.\n");
+        return tail;
+    }
+    else if (pos < 0 || pos > list_len - 1) {
+        printf("Node was not inserted.\n");
+        printf("pos of (%i) is invalid.\n", pos);
+        return tail;
+    }
 
+    dNode *next_node = tail;
+
+    for (int i = list_len - 1; i > 0; i--) {
+        if (i == pos) {
+            break;
+        }
+
+        next_node = next_node->prev;
+    }
+
+    dNode *prev_node = next_node->prev;
+
+    prev_node->next = new_node;
+    new_node->prev = prev_node;
+
+    next_node->prev = new_node;
+    new_node->next = next_node;
+
+    return tail;
 }
 
 dNode *remove_head() {
