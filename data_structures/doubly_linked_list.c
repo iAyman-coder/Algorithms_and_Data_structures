@@ -9,6 +9,12 @@ typedef struct dNode {
 }dNode;
 
 dNode **make_dlinked_list(char arr[], size_t len, dNode *head_and_tail_ptrs[2]) {
+    if (len <= 0) {
+        printf("Can't form a doubly linked list.\n");
+        printf("len of (%i) is invalid.\n");
+        return NULL;
+    }
+
     dNode *head = NULL;
     dNode *tail = NULL;
 
@@ -347,6 +353,12 @@ void print_dlinked_list_backward(dNode *tail, size_t list_len) {
 }
 
 size_t len_dlinked_list(dNode *head_or_tail, char *direction) {
+    if (head_or_tail == NULL) {
+        printf("Can't find the length of doubly linked list.\n");
+        printf("head_or_tail must not be NULL.\n");
+        return 0;
+    }
+
     int direction_forward = strcasecmp(direction, "forward");
     int direction_backward = strcasecmp(direction, "backward");
 
