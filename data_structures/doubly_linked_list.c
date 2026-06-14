@@ -40,7 +40,13 @@ dNode **make_dlinked_list(char arr[], size_t len, dNode *head_and_tail_ptrs[2]) 
     return head_and_tail_ptrs;
 }
 
-dNode *insert_dnode(dNode *head_or_tail, char *direction, dNode *new_node, int pos) {
+dNode *insert_dnode(dNode *head_or_tail, char *direction, size_t len, dNode *new_node, int pos) {
+    if (pos < 0 || pos > len) {
+        printf("Invalid position.\n");
+        printf("Can't insert node at position (%i).\n", pos);
+        return head_or_tail;
+    }
+
     if (strcasecmp(direction, "forward") == 0 && head_or_tail->prev == NULL) {
         if (pos == 0) {
             new_node->next = head_or_tail;
@@ -73,7 +79,7 @@ dNode *insert_dnode(dNode *head_or_tail, char *direction, dNode *new_node, int p
         return head_or_tail;
     }
     else if (strcasecmp(direction, "backward") == 0 && head_or_tail->next == NULL) {
-        if (pos == 0) {
+        if (pos == len) {
             new_node->next = NULL;
             new_node->prev = head_or_tail;
             head_or_tail->next = new_node;
@@ -83,7 +89,7 @@ dNode *insert_dnode(dNode *head_or_tail, char *direction, dNode *new_node, int p
 
         dNode *next_node = head_or_tail;
 
-        for (int i = 1; next_node->prev != NULL; i++) {
+        for (int i = len - 1; next_node->prev != NULL; i--) {
             if (i == pos) {
                 break;
             }
@@ -110,7 +116,13 @@ dNode *insert_dnode(dNode *head_or_tail, char *direction, dNode *new_node, int p
     }
 }
 
-dNode *remove_dnode(dNode *head_or_tail, char *direction, int pos) {
+dNode *remove_dnode(dNode *head_or_tail, char *direction, size_t len, int pos) {
+    if (pos < 0 || pos > len - 1) {
+        printf("Invalid position.\n");
+        printf("Can't remove node at position (%i).\n", pos);
+        return head_or_tail;
+    }
+
     if (strcasecmp(direction, "forward") == 0 && head_or_tail->prev == NULL) {
         if (pos == 0) {
             dNode *new_head = head_or_tail->next;
@@ -146,7 +158,7 @@ dNode *remove_dnode(dNode *head_or_tail, char *direction, int pos) {
         return head_or_tail;
     }
     else if (strcasecmp(direction, "backward") == 0 && head_or_tail->next == NULL) {
-        if (pos == 0) {
+        if (pos == len - 1) {
             dNode *new_tail = head_or_tail->prev;
             new_tail->next = NULL;
 
@@ -159,7 +171,7 @@ dNode *remove_dnode(dNode *head_or_tail, char *direction, int pos) {
         dNode *prev_node;
         dNode *next_node;
 
-        for (int i = 1; current_node != NULL; i++) {
+        for (int i = len - 2; current_node != NULL; i--) {
             prev_node = current_node->prev;
             next_node = current_node->next;
 
@@ -247,4 +259,60 @@ dNode *delete_dlinked_list(dNode *head_or_tail, char *direction) {
         printf("Direction string was unrecognized. Make sure you entered 'forward' or 'backward' correctly.\n");
         return NULL;
     }
+}
+
+void print_dlinked_list(dNode *head_or_tail, char *direction, size_t len) {
+    int direction_forward = strcasecmp(direction, "forward");
+    int direction_backward = strcasecmp(direction, "backward");
+
+    if (direction_forward != 0 && direction_backward != 0) {
+        printf("Can't print doubly linked list.\n");
+        printf("Direction string was unrecognized. Make sure you entered 'forward' or 'backward' correctly.\n");
+        return;
+    }
+
+    dNode *current_node = head_or_tail;
+    int i = (direction_forward == 0) ? 0 : len - 1;
+
+    printf("Pos | Data\n");
+    while (current_node != NULL) {
+        printf("%i | %c\n", i, current_node->data);
+
+        if (direction_forward == 0) {
+            current_node = current_node->next;
+            i++;
+        }
+        else if (direction_backward == 0) {
+            current_node = current_node->prev;
+            i--;
+        }
+    }
+}
+
+size_t len_dlinked_list(dNode *head_or_tail, char *direction) {
+    int direction_forward = strcasecmp(direction, "forward");
+    int direction_backward = strcasecmp(direction, "backward");
+
+    if (direction_forward != 0 && direction_backward != 0) {
+        printf("Can't find the length of doubly linked list.\n");
+        printf("Direction string was unrecognized. Make sure you entered 'forward' or 'backward' correctly.\n");
+        return 0;
+    }
+
+    size_t len = 0;
+
+    dNode *current_node = head_or_tail;
+
+    while (current_node != NULL) {
+        len++;
+
+        if (direction_forward == 0) {
+            current_node = current_node->next;
+        }
+        else if (direction_backward == 0) {
+            current_node = current_node->prev;
+        }
+    }
+
+    return len;
 }
