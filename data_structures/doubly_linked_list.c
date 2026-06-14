@@ -374,10 +374,44 @@ size_t len_dlinked_list(dNode *head_or_tail, char *direction) {
     return len;
 }
 
-dNode *delete_dlinked_list_forward() {
+dNode *delete_dlinked_list_forward(dNode *head) {
+    if (head == NULL) {
+        printf("Doubly linked list was not deleted.\n");
+        printf("head must not be NULL.\n");
+        return NULL;
+    }
 
+    dNode *current_node = head;
+    dNode *next_node;
+
+    while (current_node != NULL) {
+        next_node = current_node->next;
+
+        free(current_node);
+
+        current_node = next_node;
+    }
+
+    return NULL;
 }
 
-dNode *delete_dlinked_list_backward() {
+dNode *delete_dlinked_list_backward(dNode *tail) {
+    if (tail == NULL) {
+        printf("Doubly linked list was not deleted.\n");
+        printf("tail must not be NULL.\n");
+        return NULL;
+    }
 
+    dNode *current_node = tail;
+    dNode *prev_node;
+
+    while (current_node != NULL) {
+        prev_node = current_node->prev;
+
+        free(current_node);
+
+        current_node = prev_node;
+    }
+
+    return NULL;
 }
