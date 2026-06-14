@@ -40,8 +40,19 @@ dNode **make_dlinked_list(char arr[], size_t len, dNode *head_and_tail_ptrs[2]) 
     return head_and_tail_ptrs;
 }
 
-dNode *insert_new_head() {
+dNode *insert_new_head(dNode *head, dNode *new_node) {
+    if (head == NULL) {
+        printf("Node was not inserted.\n");
+        printf("head must not be NULL.\n");
+        return head;
+    }
 
+    new_node->next = head;
+    new_node->prev = NULL;
+
+    head->prev = new_node;
+
+    return new_node;
 }
 
 dNode *insert_new_tail() {
