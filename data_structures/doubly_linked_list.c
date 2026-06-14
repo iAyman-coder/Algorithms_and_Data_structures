@@ -139,7 +139,7 @@ dNode *insert_dnode_before_tail(dNode *tail, size_t list_len, dNode *new_node, i
         printf("new_node must not be NULL.\n");
         return tail;
     }
-    else if (pos < 0 || pos > list_len - 1) {
+    else if (pos < 1 || pos > list_len - 1) {
         printf("Node was not inserted.\n");
         printf("pos of (%i) is invalid.\n", pos);
         return tail;
@@ -168,7 +168,7 @@ dNode *insert_dnode_before_tail(dNode *tail, size_t list_len, dNode *new_node, i
 
 dNode *remove_head(dNode *head) {
     if (head == NULL) {
-        printf("Node was not inserted.\n");
+        printf("head was not removed.\n");
         printf("head must not be NULL.\n");
         return head;
     }
@@ -183,7 +183,7 @@ dNode *remove_head(dNode *head) {
 
 dNode *remove_tail(dNode *tail) {
     if (tail == NULL) {
-        printf("Node was not inserted.\n");
+        printf("tail was not removed.\n");
         printf("tail must not be NULL.\n");
         return tail;
     }
@@ -196,12 +196,80 @@ dNode *remove_tail(dNode *tail) {
     return new_tail;
 }
 
-dNode *remove_dnode_after_head() {
+dNode *remove_dnode_after_head(dNode *head, size_t list_len, int pos) {
+    if (head == NULL) {
+        printf("Node was not removed.\n");
+        printf("head must not be NULL.\n");
+        return head;
+    }
+    else if (list_len <= 0) {
+        printf("Node was not removed.\n");
+        printf("list_len of (%i) is invalid.\n", list_len);
+        return head;
+    }
+    else if (pos < 1 || pos > list_len - 2) {
+        printf("Node was not removed.\n");
+        printf("pos of (%i) is invalid.\n", pos);
+        return head;
+    }
 
+    dNode *current_node = head->next;
+
+    for (int i = 1; i < list_len - 1; i++) {
+        if (i == pos) {
+            break;
+        }
+
+        current_node = current_node->next;
+    }
+
+    dNode *prev_node = current_node->prev;
+    dNode *next_node = current_node->next;
+
+    prev_node->next = next_node;
+    next_node->prev = prev_node;
+
+    free(current_node);
+
+    return head;
 }
 
-dNode *remove_dnode_before_tail() {
+dNode *remove_dnode_before_tail(dNode *tail, size_t list_len, int pos) {
+    if (tail == NULL) {
+        printf("Node was not removed.\n");
+        printf("tail must not be NULL.\n");
+        return tail;
+    }
+    else if (list_len <= 0) {
+        printf("Node was not removed.\n");
+        printf("list_len of (%i) is invalid.\n", list_len);
+        return tail;
+    }
+    else if (pos < 1 || pos > list_len - 2) {
+        printf("Node was not removed.\n");
+        printf("pos of (%i) is invalid.\n", pos);
+        return tail;
+    }
 
+    dNode *current_node = tail->prev;
+
+    for (int i = list_len - 2; i > 0; i++) {
+        if (i == pos) {
+            break;
+        }
+
+        current_node = current_node->prev;
+    }
+
+    dNode *prev_node = current_node->prev;
+    dNode *next_node = current_node->next;
+
+    prev_node->next = next_node;
+    next_node->prev = prev_node;
+
+    free(current_node);
+
+    return tail;
 }
 
 dNode *search_dlinked_list(dNode *head_or_tail, char *direction, char target) {
