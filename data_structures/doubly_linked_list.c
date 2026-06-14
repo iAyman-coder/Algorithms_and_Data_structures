@@ -272,26 +272,41 @@ dNode *remove_dnode_before_tail(dNode *tail, size_t list_len, int pos) {
     return tail;
 }
 
-dNode *search_dlinked_list(dNode *head_or_tail, char *direction, char target) {
-    int direction_forward = strcasecmp(direction, "forward");
-    int direction_backward = strcasecmp(direction, "backward");
-
-    if (direction_forward != 0 && direction_backward != 0) {
-        printf("Search did not happen.\n");
-        printf("Direction string was unrecognized. Make sure you entered 'forward' or 'backward' correctly.\n");
+dNode *search_dlinked_list_forward(dNode *head, char target) {
+    if (head == NULL) {
+        printf("No search was performed.\n");
+        printf("head must not be NULL.\n");
         return NULL;
     }
 
-    dNode *current_node = head_or_tail;
+    dNode *current_node = head;
 
     while (current_node != NULL) {
         if (current_node->data == target) {
             return current_node;
         }
-        else if (direction_forward == 0) {
+        else {
             current_node = current_node->next;
         }
-        else if (direction_backward == 0) {
+    }
+
+    return NULL;
+}
+
+dNode *search_dlinked_list_backward(dNode *tail, char target) {
+    if (tail == NULL) {
+        printf("No search was performed.\n");
+        printf("tail must not be NULL.\n");
+        return NULL;
+    }
+
+    dNode *current_node = tail;
+
+    while (current_node != NULL) {
+        if (current_node->data == target) {
+            return current_node;
+        }
+        else {
             current_node = current_node->prev;
         }
     }
