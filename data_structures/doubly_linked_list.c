@@ -314,31 +314,35 @@ dNode *search_dlinked_list_backward(dNode *tail, char target) {
     return NULL;
 }
 
-void print_dlinked_list(dNode *head_or_tail, char *direction, size_t len) {
-    int direction_forward = strcasecmp(direction, "forward");
-    int direction_backward = strcasecmp(direction, "backward");
-
-    if (direction_forward != 0 && direction_backward != 0) {
-        printf("Can't print doubly linked list.\n");
-        printf("Direction string was unrecognized. Make sure you entered 'forward' or 'backward' correctly.\n");
+void print_dlinked_list_forward(dNode *head) {
+    if (head == NULL) {
+        printf("Can't print linked list.\n");
+        printf("head must not be NULL.\n");
         return;
     }
 
-    dNode *current_node = head_or_tail;
-    int i = (direction_forward == 0) ? 0 : len - 1;
+    dNode *current_node = head;
 
     printf("Pos | Data\n");
-    while (current_node != NULL) {
+    for (int i = 0; current_node != NULL; i++) {
         printf("%i | %c\n", i, current_node->data);
+        current_node = current_node->next;
+    }
+}
 
-        if (direction_forward == 0) {
-            current_node = current_node->next;
-            i++;
-        }
-        else if (direction_backward == 0) {
-            current_node = current_node->prev;
-            i--;
-        }
+void print_dlinked_list_backward(dNode *tail, size_t list_len) {
+    if (tail == NULL) {
+        printf("Can't print linked list.\n");
+        printf("tail must not be NULL.\n");
+        return;
+    }
+
+    dNode *current_node = tail;
+
+    printf("Pos | Data\n");
+    for (int i = list_len - 1; current_node != NULL; i--) {
+        printf("%i | %c\n", i, current_node->data);
+        current_node = current_node->prev;
     }
 }
 
