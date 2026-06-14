@@ -166,12 +166,34 @@ dNode *insert_dnode_before_tail(dNode *tail, size_t list_len, dNode *new_node, i
     return tail;
 }
 
-dNode *remove_head() {
+dNode *remove_head(dNode *head) {
+    if (head == NULL) {
+        printf("Node was not inserted.\n");
+        printf("head must not be NULL.\n");
+        return head;
+    }
 
+    dNode *new_head = head->next;
+    new_head->prev = NULL;
+
+    free(head);
+
+    return new_head;
 }
 
-dNode *remove_tail() {
+dNode *remove_tail(dNode *tail) {
+    if (tail == NULL) {
+        printf("Node was not inserted.\n");
+        printf("tail must not be NULL.\n");
+        return tail;
+    }
 
+    dNode *new_tail = tail->prev;
+    new_tail->next = NULL;
+
+    free(tail);
+
+    return new_tail;
 }
 
 dNode *remove_dnode_after_head() {
