@@ -6,4 +6,3 @@ doubly_linked_list:
 
 clean:
 	rm *.exe
-	rm *.txt
