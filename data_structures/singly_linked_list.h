@@ -67,5 +67,23 @@ Node *search_linked_list(Node *head, char target);
  */
 Node *delete_linked_list(Node *head);
 
+/**
+ * @brief A function that prints a linked list.
+ * 
+ * @param head: Pointer to the head node.
+ * 
+ * @return Nothing (void).
+ */
+void print_linked_list(Node *head);
+
+/**
+ * @brief A function that returns the length of a linked list.
+ * 
+ * @param head: Pointer to the head node.
+ * 
+ * @return Length of linked list as size_t.
+ */
+size_t len_linked_list(Node *head);
+
 
 #endif
