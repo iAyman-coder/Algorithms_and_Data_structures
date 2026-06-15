@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef struct Node {
     char data;
@@ -113,7 +114,25 @@ Node *delete_linked_list(Node *head) {
     return NULL;
 }
 
-// TODO: make a function for printing singly linked list.
+void print_linked_list(Node *head) {
+    Node *current_node = head;
 
+    printf("Pos | Data\n");
+    for (int i = 0; current_node != NULL; i++) {
+        printf("%i | %c\n", i, current_node->data);
+    }
+}
 
-// TODO: make a function that returns the length of the linked list.
+size_t len_linked_list(Node *head) {
+    Node *current_node = head;
+
+    size_t len = 0;
+
+    while (current_node != NULL) {
+        len++;
+
+        current_node = current_node->next;
+    }
+
+    return len;
+}
