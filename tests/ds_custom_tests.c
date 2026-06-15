@@ -1,5 +1,16 @@
 #include <stdio.h>
 #include "../data_structures/singly_linked_list.h"
+#include "../data_structures/doubly_linked_list.h"
+
+void test_result(int actual_result, int expected_result, char *test_name) {
+    if (actual_result != expected_result) {
+        printf("%s \033[0;31m[FAILED]\033[0;0m\n", test_name); 
+        printf("Expected: %i | Got: %i\n", expected_result, actual_result);
+        return;
+    }
+
+    printf("%s \033[0;32m[PASSED]\033[0;0m\n", test_name);
+}
 
 void test_linked_list(Node *head, char expected_result[], size_t len, char *test_name) {
     Node *current_node = head;
