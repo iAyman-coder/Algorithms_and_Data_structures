@@ -4,6 +4,7 @@
 
 #include <stddef.h>
 #include "../data_structures/singly_linked_list.h"
+#include "../data_structures/doubly_linked_list.h"
 
 /**
  * @brief Test an integer returned by a function.
