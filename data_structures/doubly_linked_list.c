@@ -259,7 +259,7 @@ dNode *remove_dnode_before_tail(dNode *tail, size_t list_len, int pos) {
 
     dNode *current_node = tail->prev;
 
-    for (int i = list_len - 2; i > 0; i++) {
+    for (int i = list_len - 2; i > 0; i--) {
         if (i == pos) {
             break;
         }
