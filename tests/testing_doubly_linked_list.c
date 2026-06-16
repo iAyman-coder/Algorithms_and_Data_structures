@@ -14,31 +14,24 @@ void testing_forward(void) {
     char correct1[10] = {'l', 'i', 'n', 'k', 'e', 'd', 'l', 'i', 's', 't'};
     test_dlinked_list(head, correct1, 10, "Initial linked list");
 
+    size_t list_len = len_dlinked_list(head, "forward");
+    test_result(list_len, 10, "Length: 10 (initial)");
+
     printf("\n");
     printf("============Initial Doubly Linked List============\n");
     print_dlinked_list_forward(head);
     printf("==================================================\n");
     printf("\n");
 
-    dNode *new_head = malloc(sizeof(dNode));
-    new_head->data = 'S';
-    new_head->prev = NULL;
-    new_head->next = NULL;
-
-    head = insert_new_head(head, new_head);
+    head = insert_new_head(head, 'S');
 
     char correct2[11] = {'S', 'l', 'i', 'n', 'k', 'e', 'd', 'l', 'i', 's', 't'};
     test_dlinked_list(head, correct2, 11, "Inserting new head");
 
-    size_t list_len = len_dlinked_list(head, "forward");
+    list_len = len_dlinked_list(head, "forward");
     test_result(list_len, 11, "List length: 11 nodes (insertion)");
 
-    dNode *new_node = malloc(sizeof(dNode));
-    new_node->data = 'G';
-    new_node->prev = NULL;
-    new_node->next = NULL;
-
-    head = insert_dnode_after_head(head, list_len, new_node, 7);
+    head = insert_dnode_after_head(head, list_len, 'G', 7);
 
     char correct3[12] = {'S', 'l', 'i', 'n', 'k', 'e', 'd', 'G', 'l', 'i', 's', 't'};
     test_dlinked_list(head, correct3, 12, "Inserting node in a middle position");
@@ -46,24 +39,19 @@ void testing_forward(void) {
     list_len = len_dlinked_list(head, "forward");
     test_result(list_len, 12, "List length: 12 nodes (insertion)");
 
-    dNode *new_node_last = malloc(sizeof(Node));
-    new_node_last->data = 'W';
-    new_node_last->prev = NULL;
-    new_node_last->next = NULL;
-
-    head = insert_dnode_after_head(head, list_len, new_node_last, 11);
+    head = insert_dnode_after_head(head, list_len, 'W', 11);
 
     char correct4[13] = {'S', 'l', 'i', 'n', 'k', 'e', 'd', 'G', 'l', 'i', 's', 'W', 't'};
     test_dlinked_list(head, correct4, 13, "Inserting node before tail node");
+
+    list_len = len_dlinked_list(head, "forward");
+    test_result(list_len, 13, "List length: 13 nodes (insertion)");
 
     printf("\n");
     printf("============Modified Doubly Linked List============\n");
     print_dlinked_list_forward(head);
     printf("==================================================\n");
     printf("\n");
-
-    list_len = len_dlinked_list(head, "forward");
-    test_result(list_len, 13, "List length: 13 nodes (insertion)");
 
     head = remove_head(head);
 
@@ -86,14 +74,14 @@ void testing_forward(void) {
     char correct7[10] = {'l', 'i', 'n', 'k', 'e', 'd', 'l', 'i', 's', 't'};
     test_dlinked_list(head, correct7, 10, "Removing the node before tail");
 
+    list_len = len_dlinked_list(head, "forward");
+    test_result(list_len, 10, "List length: 10 nodes (removal)");
+
     printf("\n");
     printf("============Doubly Linked List After Removing Nodes============\n");
     print_dlinked_list_forward(head);
     printf("==================================================\n");
     printf("\n");
-
-    list_len = len_dlinked_list(head, "forward");
-    test_result(list_len, 10, "List length: 10 nodes (removal)");
 
     dNode *found_node_first = search_dlinked_list_forward(head, 'l');
 
@@ -133,31 +121,24 @@ void testing_backward(void) {
     char correct1[10] = {'l', 'i', 'n', 'k', 'e', 'd', 'l', 'i', 's', 't'};
     test_dlinked_list(head, correct1, 10, "Initial linked list");
 
+    size_t list_len = len_dlinked_list(tail, "backward");
+    test_result(list_len, 10, "Length: 10 (initial)");
+
     printf("\n");
     printf("============Initial Doubly Linked List============\n");
     print_dlinked_list_backward(tail, 10);
     printf("==================================================\n");
     printf("\n");
 
-    dNode *new_tail = malloc(sizeof(dNode));
-    new_tail->data = 'S';
-    new_tail->prev = NULL;
-    new_tail->next = NULL;
-
-    tail = insert_new_tail(tail, new_tail);
+    tail = insert_new_tail(tail, 'S');
 
     char correct2[11] = {'l', 'i', 'n', 'k', 'e', 'd', 'l', 'i', 's', 't', 'S'};
     test_dlinked_list(head, correct2, 11, "Inserting new tail");
 
-    size_t list_len = len_dlinked_list(tail, "backward");
+    list_len = len_dlinked_list(tail, "backward");
     test_result(list_len, 11, "List length: 11 nodes (insertion)");
 
-    dNode *new_node = malloc(sizeof(dNode));
-    new_node->data = 'G';
-    new_node->prev = NULL;
-    new_node->next = NULL;
-
-    tail = insert_dnode_before_tail(tail, list_len, new_node, 6);
+    tail = insert_dnode_before_tail(tail, list_len, 'G', 6);
 
     char correct3[12] = {'l', 'i', 'n', 'k', 'e', 'd', 'G', 'l', 'i', 's', 't', 'S'};
     test_dlinked_list(head, correct3, 12, "Inserting node in a middle position");
@@ -165,24 +146,19 @@ void testing_backward(void) {
     list_len = len_dlinked_list(tail, "backward");
     test_result(list_len, 12, "List length: 12 nodes (insertion)");
 
-    dNode *new_node_first = malloc(sizeof(Node));
-    new_node_first->data = 'W';
-    new_node_first->prev = NULL;
-    new_node_first->next = NULL;
-
-    tail = insert_dnode_before_tail(tail, list_len, new_node_first, 1);
+    tail = insert_dnode_before_tail(tail, list_len, 'W', 1);
 
     char correct4[13] = {'l', 'W', 'i', 'n', 'k', 'e', 'd', 'G', 'l', 'i', 's', 't', 'S'};
     test_dlinked_list(head, correct4, 13, "Inserting node before head node");
+
+    list_len = len_dlinked_list(tail, "backward");
+    test_result(list_len, 13, "List length: 13 nodes (insertion)");
 
     printf("\n");
     printf("============Modified Doubly Linked List============\n");
     print_dlinked_list_backward(tail, 13);
     printf("==================================================\n");
     printf("\n");
-
-    list_len = len_dlinked_list(tail, "backward");
-    test_result(list_len, 13, "List length: 13 nodes (insertion)");
 
     tail = remove_tail(tail);
 
@@ -205,14 +181,14 @@ void testing_backward(void) {
     char correct7[10] = {'l', 'i', 'n', 'k', 'e', 'd', 'l', 'i', 's', 't'};
     test_dlinked_list(head, correct7, 10, "Removing the node before head");
 
+    list_len = len_dlinked_list(tail, "backward");
+    test_result(list_len, 10, "List length: 10 nodes (removal)");
+
     printf("\n");
     printf("============Doubly Linked List After Removing Nodes============\n");
     print_dlinked_list_backward(tail, 10);
     printf("==================================================\n");
     printf("\n");
-
-    list_len = len_dlinked_list(tail, "backward");
-    test_result(list_len, 10, "List length: 10 nodes (removal)");
 
     dNode *found_node_last = search_dlinked_list_backward(tail, 't');
 

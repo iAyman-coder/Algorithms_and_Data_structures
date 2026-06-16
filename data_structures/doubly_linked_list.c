@@ -46,16 +46,14 @@ dNode **make_dlinked_list(char arr[], size_t len, dNode *head_and_tail_ptrs[2]) 
     return head_and_tail_ptrs;
 }
 
-dNode *insert_new_head(dNode *head, dNode *new_node) {
+dNode *insert_new_head(dNode *head, char data) {
     if (head == NULL) {
         fprintf(stderr, "\033[0;31mError: Can't insert a new head. head can't be NULL.\033[0;0m\n");
         exit(EXIT_FAILURE);
     }
-    else if (new_node == NULL) {
-        fprintf(stderr, "\033[0;31mError: Can't insert a new head. new_node can't be NULL.\033[0;0m\n");
-        exit(EXIT_FAILURE);
-    }
 
+    dNode *new_node = malloc(sizeof(dNode));
+    new_node->data = data;
     new_node->next = head;
     new_node->prev = NULL;
 
@@ -64,16 +62,14 @@ dNode *insert_new_head(dNode *head, dNode *new_node) {
     return new_node;
 }
 
-dNode *insert_new_tail(dNode *tail, dNode *new_node) {
+dNode *insert_new_tail(dNode *tail, char data) {
     if (tail == NULL) {
         fprintf(stderr, "\033[0;31mError: Can't insert a new tail. tail can't be NULL.\033[0;0m\n");
         exit(EXIT_FAILURE);
     }
-    else if (new_node == NULL) {
-        fprintf(stderr, "\033[0;31mError: Can't insert a new tail. new_node can't be NULL.\033[0;0m\n");
-        exit(EXIT_FAILURE);
-    }
 
+    dNode *new_node = malloc(sizeof(dNode));
+    new_node->data = data;
     new_node->next = NULL;
     new_node->prev = tail;
 
@@ -82,7 +78,7 @@ dNode *insert_new_tail(dNode *tail, dNode *new_node) {
     return new_node;
 }
 
-dNode *insert_dnode_after_head(dNode *head, size_t list_len, dNode *new_node, int pos) {
+dNode *insert_dnode_after_head(dNode *head, size_t list_len, char data, int pos) {
     if (head == NULL) {
         fprintf(stderr, "\033[0;31mError: Can't insert node. head can't be NULL.\033[0;0m\n");
         exit(EXIT_FAILURE);
@@ -91,14 +87,13 @@ dNode *insert_dnode_after_head(dNode *head, size_t list_len, dNode *new_node, in
         fprintf(stderr, "\033[0;31mError: Can't insert node. (%i) list_len is invalid.\033[0;0m\n", list_len);
         exit(EXIT_FAILURE);
     }
-    else if (new_node == NULL) {
-        fprintf(stderr, "\033[0;31mError: Can't insert node. new_node can't be NULL.\033[0;0m\n");
-        exit(EXIT_FAILURE);
-    }
     else if (pos < 1 || pos > list_len - 1) {
         fprintf(stderr, "\033[0;31mError: Can't insert node. (%i) pos is invalid in a list with (%i) nodes.\033[0;0m\n", pos, list_len);
         exit(EXIT_FAILURE);
     }
+
+    dNode *new_node = malloc(sizeof(dNode));
+    new_node->data = data;
 
     dNode *prev_node = head;
 
@@ -121,7 +116,7 @@ dNode *insert_dnode_after_head(dNode *head, size_t list_len, dNode *new_node, in
     return head;
 }
 
-dNode *insert_dnode_before_tail(dNode *tail, size_t list_len, dNode *new_node, int pos) {
+dNode *insert_dnode_before_tail(dNode *tail, size_t list_len, char data, int pos) {
     if (tail == NULL) {
         fprintf(stderr, "\033[0;31mError: Can't insert node. tail can't be NULL.\033[0;0m\n");
         exit(EXIT_FAILURE);
@@ -130,14 +125,13 @@ dNode *insert_dnode_before_tail(dNode *tail, size_t list_len, dNode *new_node, i
         fprintf(stderr, "\033[0;31mError: Can't insert node. (%i) list_len is invalid.\033[0;0m\n", list_len);
         exit(EXIT_FAILURE);
     }
-    else if (new_node == NULL) {
-        fprintf(stderr, "\033[0;31mError: Can't insert node. new_node can't be NULL.\033[0;0m\n");
-        exit(EXIT_FAILURE);
-    }
     else if (pos < 1 || pos > list_len - 1) {
         fprintf(stderr, "\033[0;31mError: Can't insert node. (%i) pos is invalid in a list with (%i) nodes.\033[0;0m\n", pos, list_len);
         exit(EXIT_FAILURE);
     }
+
+    dNode *new_node = malloc(sizeof(dNode));
+    new_node->data = data;
 
     dNode *next_node = tail;
 

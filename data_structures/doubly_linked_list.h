@@ -30,61 +30,57 @@ dNode **make_dlinked_list(char arr[], size_t len, dNode *head_and_tail_ptrs[2]);
  * @brief A function that inserts new head to a doubly linked list.
  * 
  * @param head: Pointer to the head node.
- * @param new_node: Pointer to the new node that will be inserted.
+ * @param data: Character tha will be put in the new node that will be inserted.
  * 
  * @return Pointer to the new head.
  * 
  * @note - To get correct results, You must pass the correct pointer to the head node.
- * @note - new_node must be dynamically allocated.
  */
- dNode *insert_new_head(dNode *head, dNode *new_node);
+ dNode *insert_new_head(dNode *head, char data);
 
 /**
  * @brief A function that inserts new tail to a doubly linked list.
  * 
  * @param tail: Pointer to tail node.
- * @param new_node: Pointer to the new node that will be inserted.
+ * @param data: Character tha will be put in the new node that will be inserted.
  * 
  * @return Pointer to the new tail.
  * 
  * @note - To get correct results, You must pass the correct pointer to the tail node.
- * @note - new_node must be dynamically allocated.
  */
-dNode *insert_new_tail(dNode *tail, dNode *new_node);
+dNode *insert_new_tail(dNode *tail, char data);
 
 /**
  * @brief A function that inserts a new node between head and tail.
  * 
  * @param head: Pointer to the head node.
  * @param list_len: Length of the doubly linked list.
- * @param new_node: Pointer to the new node that will be inserted.
+ * @param data: Character tha will be put in the new node that will be inserted.
  * @param pos: Integer representing the position where the new node will be inserted.
  * 
  * @return Pointer to the head node.
  * 
  * @note - To get correct results, You must pass the correct pointer to the head node.
  * @note - You can't change the head or tail of the doubly linked list with this function.
- * @note - new_node must be dynamically allocated.
  * @note - First position in the doubly linked list is zero, similar to indexes.
  */
-dNode *insert_dnode_after_head(dNode *head, size_t list_len, dNode *new_node, int pos);
+dNode *insert_dnode_after_head(dNode *head, size_t list_len, char data, int pos);
 
 /**
  * @brief A function that inserts a new node between head and tail.
  * 
  * @param tail: Pointer to the tail node.
  * @param list_len: Length of the doubly linked list.
- * @param new_node: Pointer to the new node that will be inserted.
+ * @param data: Character tha will be put in the new node that will be inserted.
  * @param pos: Integer representing the position where the new node will be inserted.
  * 
  * @return Pointer to the tail node.
  * 
  * @note - To get correct results, You must pass the correct pointer to the tail node.
  * @note - You can't change the head or tail of the doubly linked list with this function.
- * @note - new_node must be dynamically allocated.
  * @note - First position in the doubly linked list is zero, similar to indexes.
  */
-dNode *insert_dnode_before_tail(dNode *tail, size_t list_len, dNode *new_node, int pos);
+dNode *insert_dnode_before_tail(dNode *tail, size_t list_len, char data, int pos);
 
 /**
  * @brief A function that removes the head of the doubly linked list.
