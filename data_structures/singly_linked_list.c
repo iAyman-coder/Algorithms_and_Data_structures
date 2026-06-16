@@ -9,8 +9,8 @@ typedef struct Node {
 
 Node *make_linked_list(char arr[], size_t len) {
     if (len <= 0) {
-        printf("Can't form a singly linked list.\n");
-        printf("len of (%i) is invalid.\n", len);
+        printf("\033[0;31m[Can't form a singly linked list. (%i) len is invalid.]\033[0;0m\n", len);
+        return NULL;
     }
 
     Node *head = NULL;
@@ -38,23 +38,19 @@ Node *make_linked_list(char arr[], size_t len) {
 
 Node *insert_node(Node *head, size_t list_len, Node *new_node, int pos) {
     if (head == NULL) {
-        printf("Node was not inserted.\n");
-        printf("head must not be NULL.\n");
+        printf("\033[0;31m[Can't insert new_node. head should not be NULL.]\033[0;0m\n");
         return head;
     }
     else if(list_len <= 0) {
-        printf("Node was not inserted.\n");
-        printf("list_len of (%i) is invalid.\n", list_len);
+        printf("\033[0;31m[Can't insert new_node. (%i) list_len is invalid.]\033[0;0m\n", list_len);
         return head;
     }
     else if (new_node == NULL) {
-        printf("Node was not inserted.\n");
-        printf("new_node must not be NULL.\n");
+        printf("\033[0;31m[Can't insert new_node. new_node should not be NULL.]\033[0;0m\n");
         return head;
     }
     else if (pos < 0 || pos > list_len) {
-        printf("Node was not inserted.\n");
-        printf("pos of (%i) is invalid.\n", pos);
+        printf("\033[0;31m[Can't insert new_node. (%i) pos is invalid in (%i) nodes list.]\033[0;0m\n", pos, list_len);
         return head;
     }
 
@@ -83,18 +79,15 @@ Node *insert_node(Node *head, size_t list_len, Node *new_node, int pos) {
 
 Node *remove_node(Node *head, size_t list_len, int pos) {
     if (head == NULL) {
-        printf("Node was not removed.\n");
-        printf("head must not be NULL.\n");
+        printf("\033[0;31m[Node wasn't removed. head should not be NULL.]\033[0;0m\n");
         return head;
     }
     else if(list_len <= 0) {
-        printf("Node was not removed.\n");
-        printf("list_len of (%i) is invalid.\n", list_len);
+        printf("\033[0;31m[Node wasn't removed. (%i) list_len is invalid.]\033[0;0m\n", list_len);
         return head;
     }
     else if (pos < 0 || pos > list_len - 1) {
-        printf("Node was not removed.\n");
-        printf("pos of (%i) is invalid.\n", pos);
+        printf("\033[0;31m[Node wasn't removed. (%i) pos is invalid in (%i) nodes list.]\033[0;0m\n", pos, list_len);
         return head;
     }
 
@@ -130,8 +123,7 @@ Node *remove_node(Node *head, size_t list_len, int pos) {
 
 Node *search_linked_list(Node *head, char target) {
     if (head == NULL) {
-        printf("No search was performed.\n");
-        printf("head must not be NULL.\n");
+        printf("\033[0;31m[Can't search. head should not be NULL.]\033[0;0m\n");
         return NULL;
     }
 
@@ -150,8 +142,7 @@ Node *search_linked_list(Node *head, char target) {
 
 Node *delete_linked_list(Node *head) {
     if (head == NULL) {
-        printf("Singly linked list was not deleted.\n");
-        printf("head must not be NULL.\n");
+        printf("\033[0;31m[Singly linked list wasn't deleted. head should not be NULL.]\033[0;0m\n");
         return NULL;
     }
 
@@ -171,8 +162,7 @@ Node *delete_linked_list(Node *head) {
 
 void print_linked_list(Node *head) {
     if (head == NULL) {
-        printf("Can't print singly linked list.\n");
-        printf("head must not be NULL.\n");
+        printf("\033[0;31m[Can't print singly linked list. head should not be NULL]\033[0;0m\n");
         return;
     }
 
@@ -187,8 +177,7 @@ void print_linked_list(Node *head) {
 
 size_t len_linked_list(Node *head) {
     if (head == NULL) {
-        printf("Can't find the length of singly linked list.\n");
-        printf("head must not be NULL.\n");
+        printf("\033[0;31m[Length of singly linked list can't be found. head should not be NULL.]\033[0;0m\n");
         return 0;
     }
 
