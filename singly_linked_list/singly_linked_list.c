@@ -9,7 +9,7 @@ typedef struct Node {
 
 Node *make_linked_list(char arr[], size_t len) {
     if (len <= 0) {
-        fprintf(stderr, "\033[0;31mError: Can't form a singly linked list. (%i) len is invalid.\033[0;0m\n", len);
+        fprintf(stderr, "\033[0;31mError: Can't form a singly linked list. arr must contain one element at least.\033[0;0m\n");
         exit(EXIT_FAILURE);
     }
 
@@ -18,11 +18,16 @@ Node *make_linked_list(char arr[], size_t len) {
     Node *prev_node = NULL;
 
     for (int i = 0; i < len; i++) {
+        // Allocating a node and populating it with data
         Node *current_node = malloc(sizeof(Node));
         current_node->data = arr[i];
         current_node->next = NULL;
 
         if (prev_node != NULL) {
+            /*
+                This conditional connects prev_node to current_node only
+                if prev_node was not NULL.
+            */
             prev_node->next = current_node;
         }
 
@@ -50,11 +55,16 @@ Node *insert_node(Node *head, size_t list_len, char data, int pos) {
         exit(EXIT_FAILURE);
     }
 
+    // Allocating a new node and populating it with data
     Node *new_node = malloc(sizeof(Node));
     new_node->data = data;
     new_node->next = NULL;
 
     if (pos == 0) {
+        /*
+            This conditional changes the head to be the new_node and
+            returns new_node as the new head of the singly linked list. 
+        */
         new_node->next = head;
         return new_node;
     }
@@ -71,8 +81,8 @@ Node *insert_node(Node *head, size_t list_len, char data, int pos) {
 
     Node *next_node = prev_node->next;
 
-    new_node->next = next_node;
     prev_node->next = new_node;
+    new_node->next = next_node;
 
     return head;
 }
@@ -92,6 +102,10 @@ Node *remove_node(Node *head, size_t list_len, int pos) {
     }
 
     if (pos == 0) {
+        /*
+            This conditional removes head and makes the node after it
+            the new head and return a pointer to that new head. 
+        */
         Node *new_head = head->next;
         free(head);
         return new_head;
@@ -137,26 +151,6 @@ Node *search_linked_list(Node *head, char target) {
     return NULL;
 }
 
-Node *delete_linked_list(Node *head) {
-    if (head == NULL) {
-        fprintf(stderr, "\033[0;31mError: Can't delete singly linked list. head can't be NULL.\033[0;0m\n");
-        exit(EXIT_FAILURE);
-    }
-
-    Node *current_node = head;
-    Node *next_node;
-
-    while (current_node != NULL) {
-        next_node = current_node->next;
-
-        free(current_node);
-
-        current_node = next_node;
-    }
-
-    return NULL;
-}
-
 void print_linked_list(Node *head) {
     if (head == NULL) {
         fprintf(stderr, "\033[0;31mError: Can't print singly linked list. head can't be NULL\033[0;0m\n");
@@ -189,4 +183,24 @@ size_t len_linked_list(Node *head) {
     }
 
     return len;
+}
+
+Node *delete_linked_list(Node *head) {
+    if (head == NULL) {
+        fprintf(stderr, "\033[0;31mError: Can't delete singly linked list. head can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
+    }
+
+    Node *current_node = head;
+    Node *next_node;
+
+    while (current_node != NULL) {
+        next_node = current_node->next;
+
+        free(current_node);
+
+        current_node = next_node;
+    }
+
+    return NULL;
 }

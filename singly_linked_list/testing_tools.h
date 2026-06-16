@@ -2,7 +2,7 @@
 #define DSCUSTOMTESTS_H
 
 
-#include <stddef.h>
+#include <stddef.h>    // This is included for the size_t data type.
 #include "singly_linked_list.h"
 
 /**
@@ -17,9 +17,9 @@
 void test_result(int actual_result, int expected_result, char *test_name);
 
 /**
- * @brief A function that tests if a linked list was formed correctly and as expected.
+ * @brief Test if a singly linked list was formed correctly and as expected.
  * 
- * @param head: Pointer to the head node of the linked list.
+ * @param head: Pointer to the head node.
  * @param expected_result: Array of characters that contains the expected order and content of each node.
  * @param len: Length of the expected_result array.
  * @param test_name: Custom name for the test to make each test unique and easy to identify.
