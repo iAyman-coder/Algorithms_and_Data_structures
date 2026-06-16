@@ -34,7 +34,7 @@ Node *make_linked_list(char arr[], size_t len);
  * @note - The new node must be dynamically allocated via malloc() or calloc().
  * @note - First position in the linked list is zero, similar to indexes.
  */
-Node *insert_node(Node *head, Node *new_node, int pos);
+Node *insert_node(Node *head, size_t list_len, Node *new_node, int pos);
 
 /**
  * @brief A function that removes a node from a linked list at a specific position.
@@ -46,7 +46,7 @@ Node *insert_node(Node *head, Node *new_node, int pos);
  * 
  * @note First position in the linked list is zero, similar to indexes.
  */
-Node *remove_node(Node *head, int pos);
+Node *remove_node(Node *head, size_t list_len, int pos);
 
 /**
  * @brief A function that searches a linked list for a specific node that contains specific data.

@@ -6,11 +6,6 @@ typedef struct Node {
     struct Node *next;
 }Node;
 
-/*
-    // TODO: add safety conditionals for parameters of all functions.
-
-    TODO: add list_len parameter for insert and remove functions.
-*/
 
 Node *make_linked_list(char arr[], size_t len) {
     if (len <= 0) {
@@ -41,10 +36,15 @@ Node *make_linked_list(char arr[], size_t len) {
     return head;
 }
 
-Node *insert_node(Node *head, Node *new_node, int pos) {
+Node *insert_node(Node *head, size_t list_len, Node *new_node, int pos) {
     if (head == NULL) {
         printf("Node was not inserted.\n");
         printf("head must not be NULL.\n");
+        return head;
+    }
+    else if(list_len <= 0) {
+        printf("Node was not inserted.\n");
+        printf("list_len of (%i) is invalid.\n", list_len);
         return head;
     }
     else if (new_node == NULL) {
@@ -52,7 +52,7 @@ Node *insert_node(Node *head, Node *new_node, int pos) {
         printf("new_node must not be NULL.\n");
         return head;
     }
-    else if (pos < 0) {
+    else if (pos < 0 || pos > list_len) {
         printf("Node was not inserted.\n");
         printf("pos of (%i) is invalid.\n", pos);
         return head;
@@ -81,13 +81,18 @@ Node *insert_node(Node *head, Node *new_node, int pos) {
     return head;
 }
 
-Node *remove_node(Node *head, int pos) {
+Node *remove_node(Node *head, size_t list_len, int pos) {
     if (head == NULL) {
         printf("Node was not removed.\n");
         printf("head must not be NULL.\n");
         return head;
     }
-    else if (pos < 0) {
+    else if(list_len <= 0) {
+        printf("Node was not removed.\n");
+        printf("list_len of (%i) is invalid.\n", list_len);
+        return head;
+    }
+    else if (pos < 0 || pos > list_len - 1) {
         printf("Node was not removed.\n");
         printf("pos of (%i) is invalid.\n", pos);
         return head;
@@ -112,6 +117,7 @@ Node *remove_node(Node *head, int pos) {
         current_node = current_node->next;
     }
 
+    // todo: change this to be current_node == NULL
     if (i != pos) {
         return head;
     }
@@ -175,6 +181,7 @@ void print_linked_list(Node *head) {
     printf("Pos | Data\n");
     for (int i = 0; current_node != NULL; i++) {
         printf("%i | %c\n", i, current_node->data);
+        current_node = current_node->next;
     }
 }
 
