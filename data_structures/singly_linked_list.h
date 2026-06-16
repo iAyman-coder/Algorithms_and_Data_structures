@@ -27,7 +27,7 @@ Node *make_linked_list(char arr[], size_t len);
  * 
  * @param head: Pointer to the head node of the linked list.
  * @param list_len: Length of the singly linked list.
- * @param new_node: Pointer to the new node that will be inserted.
+ * @param data: Character tha will be put in the new node that will be inserted.
  * @param pos: An integer that represents the position where the new node will be inserted.
  * 
  * @return Pointer to the head node of the linked list.
@@ -35,7 +35,7 @@ Node *make_linked_list(char arr[], size_t len);
  * @note - The new node must be dynamically allocated via malloc() or calloc().
  * @note - First position in the linked list is zero, similar to indexes.
  */
-Node *insert_node(Node *head, size_t list_len, Node *new_node, int pos);
+Node *insert_node(Node *head, size_t list_len, char data, int pos);
 
 /**
  * @brief A function that removes a node from a singly linked list at a specific position.

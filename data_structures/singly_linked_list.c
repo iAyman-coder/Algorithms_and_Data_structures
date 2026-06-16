@@ -36,7 +36,7 @@ Node *make_linked_list(char arr[], size_t len) {
     return head;
 }
 
-Node *insert_node(Node *head, size_t list_len, Node *new_node, int pos) {
+Node *insert_node(Node *head, size_t list_len, char data, int pos) {
     if (head == NULL) {
         fprintf(stderr, "\033[0;31mError: Can't insert new_node. head can't be NULL.\033[0;0m\n");
         exit(EXIT_FAILURE);
@@ -45,14 +45,14 @@ Node *insert_node(Node *head, size_t list_len, Node *new_node, int pos) {
         fprintf(stderr, "\033[0;31mError: Can't insert new_node. (%i) list_len is invalid.\033[0;0m\n", list_len);
         exit(EXIT_FAILURE);
     }
-    else if (new_node == NULL) {
-        fprintf(stderr, "\033[0;31mError: Can't insert new_node. new_node can't be NULL.\033[0;0m\n");
-        exit(EXIT_FAILURE);
-    }
     else if (pos < 0 || pos > list_len) {
         fprintf(stderr, "\033[0;31mError: Can't insert new_node. (%i) pos is invalid in a list with (%i) nodes.\033[0;0m\n", pos, list_len);
         exit(EXIT_FAILURE);
     }
+
+    Node *new_node = malloc(sizeof(Node));
+    new_node->data = data;
+    new_node->next = NULL;
 
     if (pos == 0) {
         new_node->next = head;
@@ -100,8 +100,7 @@ Node *remove_node(Node *head, size_t list_len, int pos) {
     Node *current_node = head->next;
     Node *prev_node = head;
 
-    int i = 1;
-    for (i; current_node != NULL; i++) {
+    for (int i = 1; current_node != NULL; i++) {
         if (i == pos) {
             break;
         }
@@ -110,12 +109,10 @@ Node *remove_node(Node *head, size_t list_len, int pos) {
         current_node = current_node->next;
     }
 
-    // todo: change this to be current_node == NULL
-    if (i != pos) {
-        return head;
-    }
+    Node *next_node = current_node->next;
 
-    prev_node->next = current_node->next;
+    prev_node->next = next_node;
+
     free(current_node);
 
     return head;
