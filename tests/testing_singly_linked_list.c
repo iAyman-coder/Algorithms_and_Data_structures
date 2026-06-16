@@ -19,11 +19,7 @@ void testing(void) {
     printf("================================================================\n");
     printf("\n");
 
-    Node *new_node_first = malloc(sizeof(Node));
-    new_node_first->data = 'S';
-    new_node_first->next = NULL;
-
-    head = insert_node(head, list_len, new_node_first, 0);
+    head = insert_node(head, list_len, 'S', 0);
 
     char correct2[11] = {'S', 'l', 'i', 'n', 'k', 'e', 'd', 'l', 'i', 's', 't'};
     test_linked_list(head, correct2, 11, "Inserting node in the first position");
@@ -31,11 +27,7 @@ void testing(void) {
     list_len = len_linked_list(head);
     test_result(list_len, 11, "Length: 11 (insertion)");
 
-    Node *new_node_middle = malloc(sizeof(Node));
-    new_node_middle->data = 'G';
-    new_node_middle->next = NULL;
-
-    head = insert_node(head, list_len, new_node_middle, 7);
+    head = insert_node(head, list_len, 'G', 7);
 
     char correct3[12] = {'S', 'l', 'i', 'n', 'k', 'e', 'd', 'G', 'l', 'i', 's', 't'};
     test_linked_list(head, correct3, 12, "Inserting node in a middle position");
@@ -43,11 +35,7 @@ void testing(void) {
     list_len = len_linked_list(head);
     test_result(list_len, 12, "Length: 12 (insertion)");
 
-    Node *new_node_last = malloc(sizeof(Node));
-    new_node_last->data = 'W';
-    new_node_last->next = NULL;
-
-    head = insert_node(head, list_len, new_node_last, 12);
+    head = insert_node(head, list_len, 'W', 12);
 
     char correct4[13] = {'S', 'l', 'i', 'n', 'k', 'e', 'd', 'G', 'l', 'i', 's', 't', 'W'};
     test_linked_list(head, correct4, 13, "Inserting node in the last position");
