@@ -21,12 +21,17 @@ dNode **make_dlinked_list(char arr[], size_t len, dNode *head_and_tail_ptrs[2]) 
     dNode *prev_node = NULL;
 
     for (int i = 0; i < len; i++) {
+        // Allocating a node and populating it with data
         dNode *current_node = malloc(sizeof(dNode));
         current_node->data = arr[i];
         current_node->next = NULL;
         current_node->prev = prev_node;
 
         if (prev_node != NULL) {
+            /*
+                This conditional connects prev_node to current_node only
+                if prev_node was not NULL.
+            */
             prev_node->next = current_node;
         }
 
@@ -40,6 +45,7 @@ dNode **make_dlinked_list(char arr[], size_t len, dNode *head_and_tail_ptrs[2]) 
         prev_node = current_node;
     }
 
+    // Put pointers to the head and tail node into the array of pointers
     head_and_tail_ptrs[0] = head;
     head_and_tail_ptrs[1] = tail;
 
@@ -52,6 +58,7 @@ dNode *insert_new_head(dNode *head, char data) {
         exit(EXIT_FAILURE);
     }
 
+    // Allocating a new head and populating it with data
     dNode *new_node = malloc(sizeof(dNode));
     new_node->data = data;
     new_node->next = head;
@@ -68,6 +75,7 @@ dNode *insert_new_tail(dNode *tail, char data) {
         exit(EXIT_FAILURE);
     }
 
+    // Allocating a new tail and populating it with data
     dNode *new_node = malloc(sizeof(dNode));
     new_node->data = data;
     new_node->next = NULL;
@@ -92,6 +100,7 @@ dNode *insert_dnode_after_head(dNode *head, size_t list_len, char data, int pos)
         exit(EXIT_FAILURE);
     }
 
+    // Allocating a new node and populating it with data
     dNode *new_node = malloc(sizeof(dNode));
     new_node->data = data;
 
@@ -130,6 +139,7 @@ dNode *insert_dnode_before_tail(dNode *tail, size_t list_len, char data, int pos
         exit(EXIT_FAILURE);
     }
 
+    // Allocating a new node and populating it with data
     dNode *new_node = malloc(sizeof(dNode));
     new_node->data = data;
 
@@ -345,9 +355,17 @@ size_t len_dlinked_list(dNode *head_or_tail, char *direction) {
         len++;
 
         if (direction_forward == 0) {
+            /*
+                This conditional allows counting the nodes of the doubly
+                linked list from left to right. 
+            */
             current_node = current_node->next;
         }
         else if (direction_backward == 0) {
+            /*
+                This conditional allows counting the nodes of the doubly
+                linked list from right to left.
+            */
             current_node = current_node->prev;
         }
     }

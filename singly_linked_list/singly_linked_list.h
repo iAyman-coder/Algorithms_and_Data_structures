@@ -50,7 +50,7 @@ Node *insert_node(Node *head, size_t list_len, char data, int pos);
 Node *remove_node(Node *head, size_t list_len, int pos);
 
 /**
- * @brief Search a singly linked list for a specific node that contains specific data.
+ * @brief Search a singly linked list for the node that contains target.
  * 
  * @param head: Pointer to the head node.
  * @param target: Character that will be looked for in the nodes of the singly linked list.
