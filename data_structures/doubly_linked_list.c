@@ -8,10 +8,11 @@ typedef struct dNode {
     struct dNode *next;
 }dNode;
 
+
 dNode **make_dlinked_list(char arr[], size_t len, dNode *head_and_tail_ptrs[2]) {
-    if (len <= 0) {
+    if (len <= 1) {
         printf("Can't form a doubly linked list.\n");
-        printf("len of (%i) is invalid.\n");
+        printf("len of (%i) is invalid.\n", len);
         return NULL;
     }
 
