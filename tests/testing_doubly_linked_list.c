@@ -245,7 +245,7 @@ int main(void) {
     printf("#\n");
     printf("#\n");
     printf("#\n");
-    printf(">>>>>>>>>>>>>> testing_forward finished\n");
+    printf(">>>>>>>>>> testing_forward finished\n");
     printf("#\n");
     printf("#\n");
     printf("#\n");
@@ -255,11 +255,10 @@ int main(void) {
     printf("#\n");
     printf("#\n");
     printf("#\n");
-    printf(">>>>>>>>>>>>>> testing_backward finished\n");
+    printf(">>>>>>>>>> testing_backward finished\n");
     printf("#\n");
     printf("#\n");
     printf("#\n");
-
 
     return 0;
 }

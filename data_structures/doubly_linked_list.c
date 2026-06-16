@@ -11,9 +11,8 @@ typedef struct dNode {
 
 dNode **make_dlinked_list(char arr[], size_t len, dNode *head_and_tail_ptrs[2]) {
     if (len <= 1) {
-        printf("Can't form a doubly linked list.\n");
-        printf("len of (%i) is invalid.\n", len);
-        return NULL;
+        fprintf(stderr, "\033[0;31mError: Can't form a doubly linked list. arr must contain two elements at least.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
 
     dNode *head = NULL;
@@ -49,14 +48,12 @@ dNode **make_dlinked_list(char arr[], size_t len, dNode *head_and_tail_ptrs[2]) 
 
 dNode *insert_new_head(dNode *head, dNode *new_node) {
     if (head == NULL) {
-        printf("Node was not inserted.\n");
-        printf("head must not be NULL.\n");
-        return head;
+        fprintf(stderr, "\033[0;31mError: Can't insert a new head. head can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
     else if (new_node == NULL) {
-        printf("Node was not inserted.\n");
-        printf("new_node must not be NULL.\n");
-        return head;
+        fprintf(stderr, "\033[0;31mError: Can't insert a new head. new_node can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
 
     new_node->next = head;
@@ -69,14 +66,12 @@ dNode *insert_new_head(dNode *head, dNode *new_node) {
 
 dNode *insert_new_tail(dNode *tail, dNode *new_node) {
     if (tail == NULL) {
-        printf("Node was not inserted.\n");
-        printf("tail must not be NULL.\n");
-        return tail;
+        fprintf(stderr, "\033[0;31mError: Can't insert a new tail. tail can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
     else if (new_node == NULL) {
-        printf("Node was not inserted.\n");
-        printf("new_node must not be NULL.\n");
-        return tail;
+        fprintf(stderr, "\033[0;31mError: Can't insert a new tail. new_node can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
 
     new_node->next = NULL;
@@ -89,24 +84,20 @@ dNode *insert_new_tail(dNode *tail, dNode *new_node) {
 
 dNode *insert_dnode_after_head(dNode *head, size_t list_len, dNode *new_node, int pos) {
     if (head == NULL) {
-        printf("Node was not inserted.\n");
-        printf("head must not be NULL.\n");
-        return head;
+        fprintf(stderr, "\033[0;31mError: Can't insert node. head can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
     else if (list_len <= 0) {
-        printf("Node was not inserted.\n");
-        printf("list_len of (%i) is invalid.\n", list_len);
-        return head;
+        fprintf(stderr, "\033[0;31mError: Can't insert node. (%i) list_len is invalid.\033[0;0m\n", list_len);
+        exit(EXIT_FAILURE);
     }
     else if (new_node == NULL) {
-        printf("Node was not inserted.\n");
-        printf("new_node must not be NULL.\n");
-        return head;
+        fprintf(stderr, "\033[0;31mError: Can't insert node. new_node can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
     else if (pos < 1 || pos > list_len - 1) {
-        printf("Node was not inserted.\n");
-        printf("pos of (%i) is invalid.\n", pos);
-        return head;
+        fprintf(stderr, "\033[0;31mError: Can't insert node. (%i) pos is invalid in a list with (%i) nodes.\033[0;0m\n", pos, list_len);
+        exit(EXIT_FAILURE);
     }
 
     dNode *prev_node = head;
@@ -132,24 +123,20 @@ dNode *insert_dnode_after_head(dNode *head, size_t list_len, dNode *new_node, in
 
 dNode *insert_dnode_before_tail(dNode *tail, size_t list_len, dNode *new_node, int pos) {
     if (tail == NULL) {
-        printf("Node was not inserted.\n");
-        printf("tail must not be NULL.\n");
-        return tail;
+        fprintf(stderr, "\033[0;31mError: Can't insert node. tail can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
     else if (list_len <= 0) {
-        printf("Node was not inserted.\n");
-        printf("list_len of (%i) is invalid.\n", list_len);
-        return tail;
+        fprintf(stderr, "\033[0;31mError: Can't insert node. (%i) list_len is invalid.\033[0;0m\n", list_len);
+        exit(EXIT_FAILURE);
     }
     else if (new_node == NULL) {
-        printf("Node was not inserted.\n");
-        printf("new_node must not be NULL.\n");
-        return tail;
+        fprintf(stderr, "\033[0;31mError: Can't insert node. new_node can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
     else if (pos < 1 || pos > list_len - 1) {
-        printf("Node was not inserted.\n");
-        printf("pos of (%i) is invalid.\n", pos);
-        return tail;
+        fprintf(stderr, "\033[0;31mError: Can't insert node. (%i) pos is invalid in a list with (%i) nodes.\033[0;0m\n", pos, list_len);
+        exit(EXIT_FAILURE);
     }
 
     dNode *next_node = tail;
@@ -175,9 +162,8 @@ dNode *insert_dnode_before_tail(dNode *tail, size_t list_len, dNode *new_node, i
 
 dNode *remove_head(dNode *head) {
     if (head == NULL) {
-        printf("head was not removed.\n");
-        printf("head must not be NULL.\n");
-        return head;
+        fprintf(stderr, "\033[0;31mError: Can't remove head. head can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
 
     dNode *new_head = head->next;
@@ -190,9 +176,8 @@ dNode *remove_head(dNode *head) {
 
 dNode *remove_tail(dNode *tail) {
     if (tail == NULL) {
-        printf("tail was not removed.\n");
-        printf("tail must not be NULL.\n");
-        return tail;
+        fprintf(stderr, "\033[0;31mError: Can't remove tail. tail can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
 
     dNode *new_tail = tail->prev;
@@ -205,19 +190,16 @@ dNode *remove_tail(dNode *tail) {
 
 dNode *remove_dnode_after_head(dNode *head, size_t list_len, int pos) {
     if (head == NULL) {
-        printf("Node was not removed.\n");
-        printf("head must not be NULL.\n");
-        return head;
+        fprintf(stderr, "\033[0;31mError: Can't remove node. head can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
     else if (list_len <= 0) {
-        printf("Node was not removed.\n");
-        printf("list_len of (%i) is invalid.\n", list_len);
-        return head;
+        fprintf(stderr, "\033[0;31mError: Can't remove node. (%i) list_len is invalid.\033[0;0m\n", list_len);
+        exit(EXIT_FAILURE);
     }
     else if (pos < 1 || pos > list_len - 2) {
-        printf("Node was not removed.\n");
-        printf("pos of (%i) is invalid.\n", pos);
-        return head;
+        fprintf(stderr, "\033[0;31mError: Can't remove node. (%i) pos is invalid in a list with (%i) nodes.\033[0;0m\n", pos, list_len);
+        exit(EXIT_FAILURE);
     }
 
     dNode *current_node = head->next;
@@ -243,19 +225,16 @@ dNode *remove_dnode_after_head(dNode *head, size_t list_len, int pos) {
 
 dNode *remove_dnode_before_tail(dNode *tail, size_t list_len, int pos) {
     if (tail == NULL) {
-        printf("Node was not removed.\n");
-        printf("tail must not be NULL.\n");
-        return tail;
+        fprintf(stderr, "\033[0;31mError: Can't remove node. tail can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
     else if (list_len <= 0) {
-        printf("Node was not removed.\n");
-        printf("list_len of (%i) is invalid.\n", list_len);
-        return tail;
+        fprintf(stderr, "\033[0;31mError: Can't remove node. (%i) list_len is invalid.\033[0;0m\n", list_len);
+        exit(EXIT_FAILURE);
     }
     else if (pos < 1 || pos > list_len - 2) {
-        printf("Node was not removed.\n");
-        printf("pos of (%i) is invalid.\n", pos);
-        return tail;
+        fprintf(stderr, "\033[0;31mError: Can't remove node. (%i) pos is invalid in a list with (%i) nodes.\033[0;0m\n", pos, list_len);
+        exit(EXIT_FAILURE);
     }
 
     dNode *current_node = tail->prev;
@@ -281,9 +260,8 @@ dNode *remove_dnode_before_tail(dNode *tail, size_t list_len, int pos) {
 
 dNode *search_dlinked_list_forward(dNode *head, char target) {
     if (head == NULL) {
-        printf("No search was performed.\n");
-        printf("head must not be NULL.\n");
-        return NULL;
+        fprintf(stderr, "\033[0;31mError: Can't search. head can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
 
     dNode *current_node = head;
@@ -302,9 +280,8 @@ dNode *search_dlinked_list_forward(dNode *head, char target) {
 
 dNode *search_dlinked_list_backward(dNode *tail, char target) {
     if (tail == NULL) {
-        printf("No search was performed.\n");
-        printf("tail must not be NULL.\n");
-        return NULL;
+        fprintf(stderr, "\033[0;31mError: Can't search. tail can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
 
     dNode *current_node = tail;
@@ -323,9 +300,8 @@ dNode *search_dlinked_list_backward(dNode *tail, char target) {
 
 void print_dlinked_list_forward(dNode *head) {
     if (head == NULL) {
-        printf("Can't print linked list.\n");
-        printf("head must not be NULL.\n");
-        return;
+        fprintf(stderr, "\033[0;31mError: Can't print doubly linked list. head can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
 
     dNode *current_node = head;
@@ -339,9 +315,8 @@ void print_dlinked_list_forward(dNode *head) {
 
 void print_dlinked_list_backward(dNode *tail, size_t list_len) {
     if (tail == NULL) {
-        printf("Can't print linked list.\n");
-        printf("tail must not be NULL.\n");
-        return;
+        fprintf(stderr, "\033[0;31mError: Can't print doubly linked list. tail can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
 
     dNode *current_node = tail;
@@ -355,18 +330,17 @@ void print_dlinked_list_backward(dNode *tail, size_t list_len) {
 
 size_t len_dlinked_list(dNode *head_or_tail, char *direction) {
     if (head_or_tail == NULL) {
-        printf("Can't find the length of doubly linked list.\n");
-        printf("head_or_tail must not be NULL.\n");
-        return 0;
+        fprintf(stderr, "\033[0;31mError: Can't find the length of the doubly linked list. head_or_tail can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
 
     int direction_forward = strcasecmp(direction, "forward");
     int direction_backward = strcasecmp(direction, "backward");
 
     if (direction_forward != 0 && direction_backward != 0) {
-        printf("Can't find the length of doubly linked list.\n");
-        printf("Direction string was unrecognized. Make sure you entered 'forward' or 'backward' correctly.\n");
-        return 0;
+        fprintf(stderr, "\033[0;31mError: Can't find the length of the doubly linked list. direction string was unrecognized.\033[0;0m\n");
+        fprintf(stderr, "\033[0;34mHint: Make sure you entered 'forward' or 'backward' correctly!\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
 
     size_t len = 0;
@@ -389,9 +363,8 @@ size_t len_dlinked_list(dNode *head_or_tail, char *direction) {
 
 dNode *delete_dlinked_list_forward(dNode *head) {
     if (head == NULL) {
-        printf("Doubly linked list was not deleted.\n");
-        printf("head must not be NULL.\n");
-        return NULL;
+        fprintf(stderr, "\033[0;31mError: Can't delete doubly linked list. head can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
 
     dNode *current_node = head;
@@ -410,9 +383,8 @@ dNode *delete_dlinked_list_forward(dNode *head) {
 
 dNode *delete_dlinked_list_backward(dNode *tail) {
     if (tail == NULL) {
-        printf("Doubly linked list was not deleted.\n");
-        printf("tail must not be NULL.\n");
-        return NULL;
+        fprintf(stderr, "\033[0;31mError: Can't delete doubly linked list. tail can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
 
     dNode *current_node = tail;

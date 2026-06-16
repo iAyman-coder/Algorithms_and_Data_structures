@@ -116,61 +116,6 @@ void testing(void) {
     }
 }
 
-void testing_error_handling(void) {
-    printf("==========make_linked_list: len is 0==========\n");
-    char arr[1];
-    make_linked_list(arr, 0);
-    printf("=====================\n");
-
-    Node *head = malloc(sizeof(Node));
-
-    printf("==========insert_node: head is NULL==========\n");
-    insert_node(NULL, 1, head, 1);
-    printf("=====================\n");
-
-    printf("==========insert_node: list_len is 0==========\n");
-    insert_node(head, 0, head, 1);
-    printf("=====================\n");
-
-    printf("==========insert_node: new_node is NULL==========\n");
-    insert_node(head, 1, NULL, 1);
-    printf("=====================\n");
-
-    printf("==========insert_node: pos > list_len==========\n");
-    insert_node(head, 1, head, 3);
-    printf("=====================\n");
-
-    printf("==========remove_node: head is NULL==========\n");
-    remove_node(NULL, 1, 0);
-    printf("=====================\n");
-
-    printf("==========remove_node: list_len is 0==========\n");
-    remove_node(head, 0, 0);
-    printf("=====================\n");
-
-    printf("==========remove_node: pos > list_len - 1==========\n");
-    remove_node(head, 4, 6);
-    printf("=====================\n");
-    
-    printf("==========search_linked_list: head is NULL==========\n");
-    search_linked_list(NULL, 'c');
-    printf("=====================\n");
-
-    printf("==========delete_linked_list: head is NULL==========\n");
-    delete_linked_list(NULL);
-    printf("=====================\n");
-
-    printf("==========print_linked_list: head is NULL==========\n");
-    print_linked_list(NULL);
-    printf("=====================\n");
-
-    printf("==========len_linked_list: head is NULL==========\n");
-    len_linked_list(NULL);
-    printf("=====================\n");
-
-    free(head);
-}
-
 int main(void) {
     testing();
 
@@ -178,16 +123,6 @@ int main(void) {
     printf("#\n");
     printf("#\n");
     printf(">>>>>>>>>> testing finished\n");
-    printf("#\n");
-    printf("#\n");
-    printf("#\n");
-
-    testing_error_handling();
-
-    printf("#\n");
-    printf("#\n");
-    printf("#\n");
-    printf(">>>>>>>>>> testing_error_handling finished\n");
     printf("#\n");
     printf("#\n");
     printf("#\n");

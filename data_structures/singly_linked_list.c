@@ -9,8 +9,8 @@ typedef struct Node {
 
 Node *make_linked_list(char arr[], size_t len) {
     if (len <= 0) {
-        printf("\033[0;31m[Can't form a singly linked list. (%i) len is invalid.]\033[0;0m\n", len);
-        return NULL;
+        fprintf(stderr, "\033[0;31mError: Can't form a singly linked list. (%i) len is invalid.\033[0;0m\n", len);
+        exit(EXIT_FAILURE);
     }
 
     Node *head = NULL;
@@ -38,20 +38,20 @@ Node *make_linked_list(char arr[], size_t len) {
 
 Node *insert_node(Node *head, size_t list_len, Node *new_node, int pos) {
     if (head == NULL) {
-        printf("\033[0;31m[Can't insert new_node. head should not be NULL.]\033[0;0m\n");
-        return head;
+        fprintf(stderr, "\033[0;31mError: Can't insert new_node. head can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
     else if(list_len <= 0) {
-        printf("\033[0;31m[Can't insert new_node. (%i) list_len is invalid.]\033[0;0m\n", list_len);
-        return head;
+        fprintf(stderr, "\033[0;31mError: Can't insert new_node. (%i) list_len is invalid.\033[0;0m\n", list_len);
+        exit(EXIT_FAILURE);
     }
     else if (new_node == NULL) {
-        printf("\033[0;31m[Can't insert new_node. new_node should not be NULL.]\033[0;0m\n");
-        return head;
+        fprintf(stderr, "\033[0;31mError: Can't insert new_node. new_node can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
     else if (pos < 0 || pos > list_len) {
-        printf("\033[0;31m[Can't insert new_node. (%i) pos is invalid in (%i) nodes list.]\033[0;0m\n", pos, list_len);
-        return head;
+        fprintf(stderr, "\033[0;31mError: Can't insert new_node. (%i) pos is invalid in a list with (%i) nodes.\033[0;0m\n", pos, list_len);
+        exit(EXIT_FAILURE);
     }
 
     if (pos == 0) {
@@ -79,16 +79,16 @@ Node *insert_node(Node *head, size_t list_len, Node *new_node, int pos) {
 
 Node *remove_node(Node *head, size_t list_len, int pos) {
     if (head == NULL) {
-        printf("\033[0;31m[Node wasn't removed. head should not be NULL.]\033[0;0m\n");
-        return head;
+        fprintf(stderr, "\033[0;31mError: Can't remove node. head can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
     else if(list_len <= 0) {
-        printf("\033[0;31m[Node wasn't removed. (%i) list_len is invalid.]\033[0;0m\n", list_len);
-        return head;
+        fprintf(stderr, "\033[0;31mError: Can't remove node. (%i) list_len is invalid.\033[0;0m\n", list_len);
+        exit(EXIT_FAILURE);
     }
     else if (pos < 0 || pos > list_len - 1) {
-        printf("\033[0;31m[Node wasn't removed. (%i) pos is invalid in (%i) nodes list.]\033[0;0m\n", pos, list_len);
-        return head;
+        fprintf(stderr, "\033[0;31mError: Can't remove node. (%i) pos is invalid in a list with (%i) nodes.\033[0;0m\n", pos, list_len);
+        exit(EXIT_FAILURE);
     }
 
     if (pos == 0) {
@@ -123,8 +123,8 @@ Node *remove_node(Node *head, size_t list_len, int pos) {
 
 Node *search_linked_list(Node *head, char target) {
     if (head == NULL) {
-        printf("\033[0;31m[Can't search. head should not be NULL.]\033[0;0m\n");
-        return NULL;
+        fprintf(stderr, "\033[0;31mError: Can't search. head can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
 
     Node *current_node = head;
@@ -142,8 +142,8 @@ Node *search_linked_list(Node *head, char target) {
 
 Node *delete_linked_list(Node *head) {
     if (head == NULL) {
-        printf("\033[0;31m[Singly linked list wasn't deleted. head should not be NULL.]\033[0;0m\n");
-        return NULL;
+        fprintf(stderr, "\033[0;31mError: Can't delete singly linked list. head can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
 
     Node *current_node = head;
@@ -162,8 +162,8 @@ Node *delete_linked_list(Node *head) {
 
 void print_linked_list(Node *head) {
     if (head == NULL) {
-        printf("\033[0;31m[Can't print singly linked list. head should not be NULL]\033[0;0m\n");
-        return;
+        fprintf(stderr, "\033[0;31mError: Can't print singly linked list. head can't be NULL\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
 
     Node *current_node = head;
@@ -177,8 +177,8 @@ void print_linked_list(Node *head) {
 
 size_t len_linked_list(Node *head) {
     if (head == NULL) {
-        printf("\033[0;31m[Length of singly linked list can't be found. head should not be NULL.]\033[0;0m\n");
-        return 0;
+        fprintf(stderr, "\033[0;31mError: Can't find the length of the singly linked list. head can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
     }
 
     Node *current_node = head;
