@@ -13,7 +13,7 @@ typedef struct Node {
 }Node;
 
 /**
- * @brief A function that forms a linked list.
+ * @brief A function that forms a singly linked list.
  * 
  * @param arr: Array of characters that data will be taken from.
  * @param len: Length of the array.
@@ -23,9 +23,10 @@ typedef struct Node {
 Node *make_linked_list(char arr[], size_t len);
 
 /**
- * @brief A function that adds a new node to a linked list at a specific position.
+ * @brief A function that adds a new node to a singly linked list at a specific position.
  * 
  * @param head: Pointer to the head node of the linked list.
+ * @param list_len: Length of the singly linked list.
  * @param new_node: Pointer to the new node that will be inserted.
  * @param pos: An integer that represents the position where the new node will be inserted.
  * 
@@ -37,9 +38,10 @@ Node *make_linked_list(char arr[], size_t len);
 Node *insert_node(Node *head, size_t list_len, Node *new_node, int pos);
 
 /**
- * @brief A function that removes a node from a linked list at a specific position.
+ * @brief A function that removes a node from a singly linked list at a specific position.
  * 
  * @param head: Pointer to the head node of the linked list.
+ * @param list_len: Length of the singly linked list.
  * @param pos: An integer that represents the position of the node that will be deleted.
  * 
  * @return Pointer to the head node of the linked list.
@@ -49,7 +51,7 @@ Node *insert_node(Node *head, size_t list_len, Node *new_node, int pos);
 Node *remove_node(Node *head, size_t list_len, int pos);
 
 /**
- * @brief A function that searches a linked list for a specific node that contains specific data.
+ * @brief A function that searches a singly linked list for a specific node that contains specific data.
  * 
  * @param head: Pointer to the head node of the linked list.
  * @param target: Character that will be looked for in the nodes of the linked list.
