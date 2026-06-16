@@ -3,8 +3,7 @@
 
 
 #include <stddef.h>
-#include "../data_structures/singly_linked_list.h"
-#include "../data_structures/doubly_linked_list.h"
+#include "singly_linked_list.h"
 
 /**
  * @brief Test an integer returned by a function.
@@ -28,18 +27,6 @@ void test_result(int actual_result, int expected_result, char *test_name);
  * @return Nothing (void).
  */
 void test_linked_list(Node *head, char expected_result[], size_t len, char *test_name);
-
-/**
- * @brief A function that tests if a doubly linked list was formed correctly and as expected.
- * 
- * @param head: Pointer to the head node of the doubly linked list.
- * @param expected_result: Array of characters that contains the expected order and content of each node.
- * @param len: Length of the expected_result array.
- * @param test_name: Custom name for the test to make each test unique and easy to identify.
- * 
- * @return Nothing (void).
- */
-void test_dlinked_list(dNode *head, char expected_result[], size_t len, char *test_name);
 
 
 #endif

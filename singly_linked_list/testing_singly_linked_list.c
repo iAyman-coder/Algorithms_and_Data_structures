@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "ds_custom_tests.h"
-#include "../data_structures/singly_linked_list.h"
+#include "testing_tools.h"
+#include "singly_linked_list.h"
 
 void testing(void) {
     char arr[10] = {'l', 'i', 'n', 'k', 'e', 'd', 'l', 'i', 's', 't'};

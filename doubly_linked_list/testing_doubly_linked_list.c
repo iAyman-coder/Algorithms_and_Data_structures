@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "ds_custom_tests.h"
-#include "../data_structures/doubly_linked_list.h"
+#include "testing_tools.h"
+#include "doubly_linked_list.h"
 
 void testing_forward(void) {
     dNode *head_and_tail[2];
