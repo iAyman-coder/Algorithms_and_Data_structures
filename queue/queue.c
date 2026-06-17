@@ -58,3 +58,16 @@ qNode *enqueue(qNode *rear, char data) {
 
     return new_node;
 }
+
+qNode *dequeue(qNode *front) {
+    if (front == NULL) {
+        fprintf(stderr, "\033[0;31mError: Can't dequeue front node. front can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
+    }
+
+    qNode *new_front = front->next;
+
+    free(front);
+
+    return new_front;
+}
