@@ -36,8 +36,17 @@ stNode *make_stack(char arr[], size_t len) {
     return head;
 }
 
-stNode *push() {
+stNode *push(stNode *head, char data) {
+   if (head == NULL) {
+        fprintf(stderr, "\033[0;31mError: Can't push a new node. head can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
+   } 
 
+   stNode *new_node = malloc(sizeof(stNode));
+   new_node->data = data;
+   new_node->next = head;
+
+   return new_node;
 }
 
 stNode *pop() {
