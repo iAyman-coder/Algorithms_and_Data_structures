@@ -71,3 +71,22 @@ qNode *dequeue(qNode *front) {
 
     return new_front;
 }
+
+size_t len_queue(qNode *front) {
+    if (front == NULL) {
+        fprintf(stderr, "\033[0;31mError: Can't fint the length of the queue. front can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
+    }
+
+    size_t len = 0;
+
+    qNode *current_node = front;
+
+    while (current_node != NULL) {
+        len++;
+
+        current_node = current_node->next;
+    }    
+
+    return NULL;
+}
