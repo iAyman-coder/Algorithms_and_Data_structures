@@ -81,8 +81,29 @@ size_t len_stack(stNode *top) {
     return len;
 }
 
-void peek() {
+void peek(stNode *top) {
+    if (top == NULL) {
+        fprintf(stderr, "\033[0;31mError: Can't peek into the stack. top can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
+    }
 
+    printf("Top node contains: '%c'\n", top->data);
+}
+
+void print_stack(stNode *top) {
+    if (top == NULL) {
+        fprintf(stderr, "\033[0;31mError: Can't print stack. top can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
+    }
+
+    stNode *current_node = top;
+
+    printf("Pos | Data\n");
+    for (int i = 0; current_node != NULL; i++) {
+        printf("%i | %c\n", i, current_node->data);
+
+        current_node = current_node->next;
+    }
 }
 
 stNode *delete_stack() {
