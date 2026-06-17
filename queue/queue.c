@@ -90,3 +90,33 @@ size_t len_queue(qNode *front) {
 
     return NULL;
 }
+
+void peek(qNode *front, qNode *rear) {
+    if (front == NULL) {
+        fprintf(stderr, "\033[0;31mError: Can't peek into the queue. front can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
+    }
+    else if(rear == NULL) {
+        fprintf(stderr, "\033[0;31mError: Can't peek into the queue. rear can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
+    }
+
+    printf("Front node contains: '%c'\n", front->data);
+    printf("Rear node contains: '%c'\n", rear->data);
+}
+
+void print_queue(qNode *front) {
+    if (front == NULL) {
+        fprintf(stderr, "\033[0;31mError: Can't print the queue. front can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
+    }
+
+    qNode *current_node = front;
+
+    printf("Pos | Data\n");
+    for (int i = 0; current_node != NULL; i++) {
+        printf("%i | %c\n", i, current_node->data);
+
+        current_node = current_node->next;
+    }
+}
