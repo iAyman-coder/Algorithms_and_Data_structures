@@ -106,6 +106,22 @@ void print_stack(stNode *top) {
     }
 }
 
-stNode *delete_stack() {
+stNode *delete_stack(stNode *top) {
+    if (top == NULL) {
+        fprintf(stderr, "\033[0;31mError: Can't delete stack. top can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
+    }
 
+    stNode *current_node = top;
+    stNode *next_node;
+
+    while (current_node != NULL) {
+        next_node = current_node->next;
+
+        free(current_node);
+
+        current_node = next_node;
+    }
+
+    return NULL;
 }
