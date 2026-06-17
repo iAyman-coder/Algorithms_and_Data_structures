@@ -7,14 +7,14 @@ typedef struct qNode {
 }qNode;
 
 
-qNode **make_queue (char arr[], size_t len, qNode *head_and_tail_ptrs[2]) {
+qNode **make_queue (char arr[], size_t len, qNode *front_and_rear_ptrs[2]) {
     if (len <= 0) {
         fprintf(stderr, "\033[0;31mError: Can't form a queue. arr must contain one element at least.\033[0;0m\n");
         exit(EXIT_FAILURE);
     }
 
-    qNode *head = NULL;
-    qNode *tail = NULL;
+    qNode *front = NULL;
+    qNode *rear = NULL;
 
     qNode *prev_node = NULL;
 
@@ -24,10 +24,10 @@ qNode **make_queue (char arr[], size_t len, qNode *head_and_tail_ptrs[2]) {
         current_node->next = NULL;
 
         if (i == 0) {
-            head = current_node;
+            front = current_node;
         }
         else if (i == len - 1) {
-            tail = current_node;
+            rear = current_node;
         }
 
         if (prev_node != NULL) {
@@ -37,9 +37,24 @@ qNode **make_queue (char arr[], size_t len, qNode *head_and_tail_ptrs[2]) {
         prev_node = current_node;
     }
 
-    head_and_tail_ptrs[0] = head;
-    head_and_tail_ptrs[1] = tail;
+    front_and_rear_ptrs[0] = front;
+    front_and_rear_ptrs[1] = rear;
 
 
-    return head_and_tail_ptrs;
+    return front_and_rear_ptrs;
+}
+
+qNode *enqueue(qNode *rear, char data) {
+    if (rear == NULL) {
+        fprintf(stderr, "\033[0;31mError: Can't enqueue a new node. rear can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
+    }
+
+    qNode *new_node = malloc(sizeof(qNode));
+    new_node->data = data;
+    new_node->next = NULL;
+
+    rear->next = new_node;
+
+    return new_node;
 }
