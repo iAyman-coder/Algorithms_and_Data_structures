@@ -120,3 +120,23 @@ void print_queue(qNode *front) {
         current_node = current_node->next;
     }
 }
+
+qNode *delete_queue(qNode *front) {
+    if (front == NULL) {
+        fprintf(stderr, "\033[0;31mError: Can't delete the queue. front can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
+    }
+
+    qNode *current_node = front;
+    qNode *next_node;
+
+    while (current_node != NULL) {
+        next_node = current_node->next;
+
+        free(current_node);
+
+        current_node = next_node;
+    }
+
+    return NULL;
+}
