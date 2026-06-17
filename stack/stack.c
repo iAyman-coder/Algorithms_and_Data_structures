@@ -62,8 +62,23 @@ stNode *pop(stNode *top) {
    return new_top;
 }
 
-size_t len_stack() {
+size_t len_stack(stNode *top) {
+    if (top == NULL) {
+        fprintf(stderr, "\033[0;31mError: Can't find the length of the stack. top can't be NULL.\033[0;0m\n");
+        exit(EXIT_FAILURE);
+    }
 
+    size_t len = 0;
+
+    stNode *current_node = top;
+
+    while (current_node != NULL) {
+        len++;
+
+        current_node = current_node->next;
+    }
+
+    return len;
 }
 
 void peek() {
