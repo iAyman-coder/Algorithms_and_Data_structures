@@ -88,7 +88,7 @@ size_t len_queue(qNode *front) {
         current_node = current_node->next;
     }    
 
-    return NULL;
+    return len;
 }
 
 void peek(qNode *front, qNode *rear) {
