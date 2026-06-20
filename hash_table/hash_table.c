@@ -20,7 +20,7 @@ static User *hash_table[TABLE_SIZE] = {NULL};
 static size_t USERS_NUM = 0;
 
 
-unsigned int hash(const char user_name[20]) {
+unsigned int hash(char user_name[20]) {
     /* This hash function is the djb2 hash function */
 
     unsigned int hash = 5381;
@@ -33,7 +33,7 @@ unsigned int hash(const char user_name[20]) {
     return hash % TABLE_SIZE;
 }
 
-bool check_user_name(const char user_name[20]) {
+bool check_user_name(char user_name[20]) {
     unsigned int indx = hash(user_name);
 
     User *current_node = hash_table[indx];
@@ -149,6 +149,22 @@ bool is_hash_table_empty(void) {
     }
 
     return true;
+}
+
+void print_user(char user_name[20]) {
+    if (check_user_name(user_name)) {
+        printf("User: %s doesn't exist\n", user_name);
+        return;
+    }
+
+    User *found_user = search_user(user_name);
+
+    printf("%s information.\n", user_name);
+    printf("==================================\n");
+    printf("Name: %s\n", found_user->actual_name);
+    printf("E-mail: %s\n", found_user->email);
+    printf("Job Title: %s\n", found_user->job_title);
+    printf("Age: %i\n", found_user->age);
 }
 
 void unload_users(void) {

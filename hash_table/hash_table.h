@@ -84,6 +84,15 @@ size_t get_users_num(void);
 bool is_hash_table_empty(void);
 
 /**
+ * @brief Print information about found user.
+ * 
+ * @param user_name: String containing the user name that will be hashed.
+ * 
+ * @return Nothing (void).
+ */
+void print_user(char user_name[20]);
+
+/**
  * @brief Delete all users from the hash table.
  * 
  * @param void: No parameters are needed.
