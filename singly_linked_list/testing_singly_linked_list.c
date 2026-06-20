@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "testing_tools.h"
 #include "singly_linked_list.h"
+#include "testing_tools.h"
 
-void testing(void) {
+int main(void) {
     char arr[10] = {'l', 'i', 'n', 'k', 'e', 'd', 'l', 'i', 's', 't'};
     Node *head = make_linked_list(arr, 10);
 
@@ -100,20 +100,8 @@ void testing(void) {
         printf("\033[0;32m[Linked list was deleted successfully]\033[0;0m\n");
     }
     else {
-        printf("\033[0;31m[Linked list was not deleted successfully]\033[0;0m\n");
+        printf("\033[0;31m[Linked list was not deleted]\033[0;0m\n");
     }
-}
-
-int main(void) {
-    testing();
-
-    printf("#\n");
-    printf("#\n");
-    printf("#\n");
-    printf(">>>>>>>>>> testing finished\n");
-    printf("#\n");
-    printf("#\n");
-    printf("#\n");
 
     return 0;
 }

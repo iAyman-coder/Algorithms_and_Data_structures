@@ -1,5 +1,5 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct Node {
     char data;
@@ -81,7 +81,9 @@ Node *insert_node(Node *head, size_t list_len, char data, int pos) {
 
     Node *next_node = prev_node->next;
 
+    // Connecting node at position pos - 1 to the new node.
     prev_node->next = new_node;
+    // Connecting node at position pos to the new node.
     new_node->next = next_node;
 
     return head;
@@ -125,6 +127,7 @@ Node *remove_node(Node *head, size_t list_len, int pos) {
 
     Node *next_node = current_node->next;
 
+    // Connectin the node before current_node to the node after it.
     prev_node->next = next_node;
 
     free(current_node);
@@ -160,8 +163,9 @@ void print_linked_list(Node *head) {
     Node *current_node = head;
 
     printf("Pos | Data\n");
+    printf("----+-----\n");
     for (int i = 0; current_node != NULL; i++) {
-        printf("%i | %c\n", i, current_node->data);
+        printf("%3i | %c\n", i, current_node->data);
         current_node = current_node->next;
     }
 }

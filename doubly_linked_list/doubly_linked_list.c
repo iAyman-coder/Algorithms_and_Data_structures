@@ -1,6 +1,6 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h>
 
 typedef struct dNode {
     char data;
@@ -45,7 +45,7 @@ dNode **make_dlinked_list(char arr[], size_t len, dNode *head_and_tail_ptrs[2]) 
         prev_node = current_node;
     }
 
-    // Put pointers to the head and tail node into the array of pointers
+    // Put pointers to the head and tail nodes into the array of pointers
     head_and_tail_ptrs[0] = head;
     head_and_tail_ptrs[1] = tail;
 
@@ -106,6 +106,7 @@ dNode *insert_dnode_after_head(dNode *head, size_t list_len, char data, int pos)
 
     dNode *prev_node = head;
 
+    // This loop doesn't allow inserting after tail.
     for (int i = 1; i < list_len; i++) {
         if (i == pos) {
             break;
@@ -116,9 +117,11 @@ dNode *insert_dnode_after_head(dNode *head, size_t list_len, char data, int pos)
 
     dNode *next_node = prev_node->next;
 
+    // Connecting node at position pos - 1 to the new node.
     prev_node->next = new_node;
     new_node->prev = prev_node;
 
+    // Connecting node at position pos to the new node.
     next_node->prev = new_node;
     new_node->next = next_node;
 
@@ -145,6 +148,7 @@ dNode *insert_dnode_before_tail(dNode *tail, size_t list_len, char data, int pos
 
     dNode *next_node = tail;
 
+    // This loop doesn't allow inserting before head.
     for (int i = list_len - 1; i > 0; i--) {
         if (i == pos) {
             break;
@@ -155,9 +159,11 @@ dNode *insert_dnode_before_tail(dNode *tail, size_t list_len, char data, int pos
 
     dNode *prev_node = next_node->prev;
 
+    // Connecting node at position pos - 1 to new node.
     prev_node->next = new_node;
     new_node->prev = prev_node;
 
+    // Connecting node at position pos to new node.
     next_node->prev = new_node;
     new_node->next = next_node;
 
@@ -206,8 +212,10 @@ dNode *remove_dnode_after_head(dNode *head, size_t list_len, int pos) {
         exit(EXIT_FAILURE);
     }
 
+    // Start from the node coming after head.
     dNode *current_node = head->next;
 
+    // This loop doesn't allow deleting tail.
     for (int i = 1; i < list_len - 1; i++) {
         if (i == pos) {
             break;
@@ -219,6 +227,7 @@ dNode *remove_dnode_after_head(dNode *head, size_t list_len, int pos) {
     dNode *prev_node = current_node->prev;
     dNode *next_node = current_node->next;
 
+    //Connecting the node before current_node to the node after it  
     prev_node->next = next_node;
     next_node->prev = prev_node;
 
@@ -241,8 +250,10 @@ dNode *remove_dnode_before_tail(dNode *tail, size_t list_len, int pos) {
         exit(EXIT_FAILURE);
     }
 
+    // Start from the node coming before tail.
     dNode *current_node = tail->prev;
 
+    // This loop doesn't allow deleting the head.
     for (int i = list_len - 2; i > 0; i--) {
         if (i == pos) {
             break;
@@ -254,6 +265,7 @@ dNode *remove_dnode_before_tail(dNode *tail, size_t list_len, int pos) {
     dNode *prev_node = current_node->prev;
     dNode *next_node = current_node->next;
 
+    // Connectin the node before current_node to the node after it.
     prev_node->next = next_node;
     next_node->prev = prev_node;
 
@@ -311,8 +323,10 @@ void print_dlinked_list_forward(dNode *head) {
     dNode *current_node = head;
 
     printf("Pos | Data\n");
+    printf("----+-----\n");
     for (int i = 0; current_node != NULL; i++) {
-        printf("%i | %c\n", i, current_node->data);
+        printf("%3i | %c\n", i, current_node->data);
+
         current_node = current_node->next;
     }
 }
@@ -326,8 +340,10 @@ void print_dlinked_list_backward(dNode *tail, size_t list_len) {
     dNode *current_node = tail;
 
     printf("Pos | Data\n");
+    printf("----+-----\n");
     for (int i = list_len - 1; current_node != NULL; i--) {
-        printf("%i | %c\n", i, current_node->data);
+        printf("%3i | %c\n", i, current_node->data);
+
         current_node = current_node->prev;
     }
 }
@@ -338,6 +354,7 @@ size_t len_dlinked_list(dNode *head_or_tail, char *direction) {
         exit(EXIT_FAILURE);
     }
 
+    // Check whether direction was set to 'forward' or 'backward'
     int direction_forward = strcasecmp(direction, "forward");
     int direction_backward = strcasecmp(direction, "backward");
 

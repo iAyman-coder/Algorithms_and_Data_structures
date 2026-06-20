@@ -92,6 +92,6 @@ int main(void) {
         printf("\033[0;32m[stack was deleted successfully]\033[0;0m\n");
     }
     else {
-        printf("\033[0;31m[stack was not deleted successfully]\033[0;0m\n");
+        printf("\033[0;31m[stack was not deleted]\033[0;0m\n");
     }
 }

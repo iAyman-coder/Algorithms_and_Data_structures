@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <stdbool.h>
+#include <string.h>
+
+#define TABLE_SIZE  100
 
 typedef struct User {
     char user_name[20];
@@ -12,25 +14,37 @@ typedef struct User {
     struct User *next;
 }User;
 
-#define TABLE_SIZE  100
-
+// The hash table where users will be inserted into.
 User *hash_table[TABLE_SIZE] = {NULL};
 
 
 unsigned int hash(char *user_name) {
-    /* This hash function is the djb2 hash function */
+    /* This hash function uses the djb2 hashing method */
 
     unsigned int hash = 5381;
     int c;
 
+    /*
+        In the Boolean expression of the while loop, we are doing three things at once:
+        1. *user_name -> dereferences the pointer and gives back the character that pointer was pointing to.
+        2. (unsigned char) -> casting any character that is not ASCII into ASCII, so the hash function 
+            doesn't calculate negative numbers. 
+        3. user_name++ -> incrementing the pointer in order to go to the next character after the current
+            iteration has ended.
+    */
     while ((c = (unsigned char)*user_name++)) {
-        hash = hash * 33 + c;
+        hash = hash * 33 + c;   // hashing formula for the djb2 hasing method.
     }
 
+    // Dividing by TABLE_SIZE to not return an index greater than the size of the hash table.
     return hash % TABLE_SIZE;
 }
 
 bool check_user_name(char *user_name) {
+    /*
+        This function returns true if the user name is available. It return false otherwise.
+    */
+
     unsigned int indx = hash(user_name);
 
     User *current_node = hash_table[indx];
@@ -73,6 +87,10 @@ bool insert_user(char *user_name, char *actual_name, char *email, char *job_titl
     }
 
     if (!check_user_name(user_name)) {
+        /*
+            This conditional checks if the user_name has been already taken
+            and returns false accordingly.
+        */
         return false;
     }
 
@@ -80,6 +98,7 @@ bool insert_user(char *user_name, char *actual_name, char *email, char *job_titl
 
     User *current_node = hash_table[indx];
 
+    // Allocating a new user and populating it with data.
     User *new_user = malloc(sizeof(User));
     strcpy(new_user->user_name, user_name);
     strcpy(new_user->actual_name, actual_name);
@@ -87,6 +106,7 @@ bool insert_user(char *user_name, char *actual_name, char *email, char *job_titl
     strcpy(new_user->job_title, job_title);
     new_user->age = age;
 
+    // Inserting the new user node into the beginning of the linked list.
     hash_table[indx] = new_user;
     new_user->next = current_node;
 
@@ -105,6 +125,10 @@ bool remove_user(char *user_name) {
         return false;
     }
     else if (strcmp(hash_table[indx]->user_name, user_name) == 0) {
+        /*
+            This conditional checks if the first node is the one to be
+            removed and remove it accordingly then returns immediately. 
+        */
         User *current_node = hash_table[indx];
         User *next_node = current_node->next;
 
@@ -133,6 +157,7 @@ bool remove_user(char *user_name) {
 
     User *next_node = current_node->next;
 
+    // Connecting the node before current node to the node after it.
     prev_node->next = next_node;
 
     free(current_node);
@@ -166,6 +191,10 @@ size_t get_users_num(void) {
 
     for (int i = 0; i < TABLE_SIZE; i++) {
         if (hash_table[i] == NULL) {
+            /*
+                This conditional skips the current iteration if the element
+                at index i doesn't contain any users. 
+            */
             continue;
         }
 
@@ -197,7 +226,7 @@ void print_user(User *usr) {
         return;
     }
 
-    printf("%s information.\n", usr->user_name);
+    printf("@%s information.\n", usr->user_name);
     printf("==================================\n");
     printf("Name: %s\n", usr->actual_name);
     printf("E-mail: %s\n", usr->email);
@@ -213,6 +242,10 @@ void unload_users(void) {
 
     for (int i = 0; i < TABLE_SIZE; i++) {
         if (hash_table[i] == NULL) {
+            /*
+                This conditional skips the current iteration if the element
+                at index i doesn't contain any user nodes. 
+            */
             continue;
         }
 
@@ -227,6 +260,7 @@ void unload_users(void) {
             current_node = next_node;
         }
 
+        // Setting the element at index i to NULL in order to avoid ghost data.
         hash_table[i] = NULL;
     }
 }

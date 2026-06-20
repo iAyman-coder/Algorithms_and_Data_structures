@@ -1,5 +1,5 @@
-#ifndef CUSTOMTESTS_H
-#define CUSTOMTESTS_H
+#ifndef ALGORITHMSTESTS_H
+#define ALGORITHMSTESTS_H
 
 
 #include <stddef.h>    // This is included for the size_t data type.

@@ -23,7 +23,7 @@ typedef struct stNode {
 stNode *make_stack(char arr[], size_t len);
 
 /**
- * @brief Push (insert) a new node into a stack data structure.
+ * @brief Push (insert) a new node into the top of a stack data structure.
  * 
  * @param top: Pointer to the top node.
  * @param data: Character that will be put in the new node that will be pushed.

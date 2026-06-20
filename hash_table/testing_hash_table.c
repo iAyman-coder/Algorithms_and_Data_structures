@@ -19,7 +19,7 @@ int main(void) {
                             44);
 
     test_boolean(insertion, "Inserting first user");
-    test_result(get_users_num(), 1, "One user");
+    test_result(get_users_num(), 1, "Length: One user");
 
     insertion = insert_user("Genevieve",
                             "Genevieve Georgie Wilson",
@@ -28,7 +28,7 @@ int main(void) {
                             47);
 
     test_boolean(insertion, "Inserting second user");
-    test_result(get_users_num(), 2, "Two users");
+    test_result(get_users_num(), 2, "Length: Two users");
 
     insertion = insert_user("Mamie",
                             "Mamie Leah Buchanan",
@@ -37,7 +37,7 @@ int main(void) {
                             27);
 
     test_boolean(insertion, "Inserting third user");
-    test_result(get_users_num(), 3, "Three users");
+    test_result(get_users_num(), 3, "Length: Three users");
 
     insertion = insert_user("Don",
                             "Don Nicholas Klein",
@@ -46,7 +46,7 @@ int main(void) {
                             38);
 
     test_boolean(insertion, "Inserting fourth user");
-    test_result(get_users_num(), 4, "Four users");
+    test_result(get_users_num(), 4, "Length: Four users");
 
     insertion = insert_user("Marc",
                             "Marc Arthur Williamson",
@@ -55,7 +55,7 @@ int main(void) {
                             21);
 
     test_boolean(insertion, "Inserting fifth user");
-    test_result(get_users_num(), 5, "Five users");
+    test_result(get_users_num(), 5, "Length: Five users");
 
     User *found_user1 = search_user("Genevieve");
     printf("\n");
@@ -70,28 +70,31 @@ int main(void) {
     User *found_user3 = search_user("Daisy");
     printf("\n");
     printf("Test: Searching for a user that doesn't exist\n");
+    printf("Result: ");
     print_user(found_user3);
     printf("\n");
 
     removal = remove_user("Don");
 
     test_boolean(removal, "Removing 'Don'");
-    test_result(get_users_num(), 4, "Four users (removal)");
+    test_result(get_users_num(), 4, "Length: Four users (removal)");
 
     User *removed_user1 = search_user("Don");
     printf("\n");
     printf("Test: Searching for a deleted user\n");
+    printf("Result: ");
     print_user(removed_user1);
     printf("\n");
 
     removal = remove_user("Lilly");
 
     test_boolean(removal, "Removing 'Lilly'");
-    test_result(get_users_num(), 3, "Three users (removal)");
+    test_result(get_users_num(), 3, "Length: Three users (removal)");
 
     User *removed_user2 = search_user("Lilly");
     printf("\n");
     printf("Test: Searching for a deleted user\n");
+    printf("Result: ");
     print_user(removed_user2);
     printf("\n");
 
@@ -100,7 +103,7 @@ int main(void) {
         printf("\033[0;32mNon-existing node was not removed\033[0;0m\n");
     }
     else {
-        printf("\033[0;32mNon-existing node was removed\033[0;0m\n");
+        printf("\033[0;31mError: Non-existing node was removed\033[0;0m\n");
     }
 
     unload_users();

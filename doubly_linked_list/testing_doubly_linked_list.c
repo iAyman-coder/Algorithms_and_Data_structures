@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "testing_tools.h"
 #include "doubly_linked_list.h"
+#include "testing_tools.h"
 
 void testing_forward(void) {
     dNode *head_and_tail[2];
@@ -29,7 +29,7 @@ void testing_forward(void) {
     test_dlinked_list(head, correct2, 11, "Inserting new head");
 
     list_len = len_dlinked_list(head, "forward");
-    test_result(list_len, 11, "List length: 11 nodes (insertion)");
+    test_result(list_len, 11, "Length: 11 nodes (insertion)");
 
     head = insert_dnode_after_head(head, list_len, 'G', 7);
 
@@ -37,7 +37,7 @@ void testing_forward(void) {
     test_dlinked_list(head, correct3, 12, "Inserting node in a middle position");
 
     list_len = len_dlinked_list(head, "forward");
-    test_result(list_len, 12, "List length: 12 nodes (insertion)");
+    test_result(list_len, 12, "Length: 12 nodes (insertion)");
 
     head = insert_dnode_after_head(head, list_len, 'W', 11);
 
@@ -45,7 +45,7 @@ void testing_forward(void) {
     test_dlinked_list(head, correct4, 13, "Inserting node before tail node");
 
     list_len = len_dlinked_list(head, "forward");
-    test_result(list_len, 13, "List length: 13 nodes (insertion)");
+    test_result(list_len, 13, "Length: 13 nodes (insertion)");
 
     printf("\n");
     printf("============Modified Doubly Linked List============\n");
@@ -59,7 +59,7 @@ void testing_forward(void) {
     test_dlinked_list(head, correct5, 12, "Removing head");
 
     list_len = len_dlinked_list(head, "forward");
-    test_result(list_len, 12, "List length: 12 nodes (removal)");
+    test_result(list_len, 12, "Length: 12 nodes (removal)");
 
     head = remove_dnode_after_head(head, list_len, 6);
 
@@ -67,7 +67,7 @@ void testing_forward(void) {
     test_dlinked_list(head, correct6, 11, "Removing a middle node");
 
     list_len = len_dlinked_list(head, "forward");
-    test_result(list_len, 11, "List length: 11 nodes (removal)");
+    test_result(list_len, 11, "Length: 11 nodes (removal)");
 
     head = remove_dnode_after_head(head, list_len, 9);
 
@@ -75,7 +75,7 @@ void testing_forward(void) {
     test_dlinked_list(head, correct7, 10, "Removing the node before tail");
 
     list_len = len_dlinked_list(head, "forward");
-    test_result(list_len, 10, "List length: 10 nodes (removal)");
+    test_result(list_len, 10, "Length: 10 nodes (removal)");
 
     printf("\n");
     printf("============Doubly Linked List After Removing Nodes============\n");
@@ -104,7 +104,7 @@ void testing_forward(void) {
         printf("\033[0;32m[Linked list was deleted successfully]\033[0;0m\n");
     }
     else {
-        printf("\033[0;31m[Linked list was not deleted successfully]\033[0;0m\n");
+        printf("\033[0;31m[Linked list was not deleted]\033[0;0m\n");
     }
 
 }
@@ -136,7 +136,7 @@ void testing_backward(void) {
     test_dlinked_list(head, correct2, 11, "Inserting new tail");
 
     list_len = len_dlinked_list(tail, "backward");
-    test_result(list_len, 11, "List length: 11 nodes (insertion)");
+    test_result(list_len, 11, "Length: 11 nodes (insertion)");
 
     tail = insert_dnode_before_tail(tail, list_len, 'G', 6);
 
@@ -144,15 +144,15 @@ void testing_backward(void) {
     test_dlinked_list(head, correct3, 12, "Inserting node in a middle position");
 
     list_len = len_dlinked_list(tail, "backward");
-    test_result(list_len, 12, "List length: 12 nodes (insertion)");
+    test_result(list_len, 12, "Length: 12 nodes (insertion)");
 
     tail = insert_dnode_before_tail(tail, list_len, 'W', 1);
 
     char correct4[13] = {'l', 'W', 'i', 'n', 'k', 'e', 'd', 'G', 'l', 'i', 's', 't', 'S'};
-    test_dlinked_list(head, correct4, 13, "Inserting node before head node");
+    test_dlinked_list(head, correct4, 13, "Inserting node after head node");
 
     list_len = len_dlinked_list(tail, "backward");
-    test_result(list_len, 13, "List length: 13 nodes (insertion)");
+    test_result(list_len, 13, "Length: 13 nodes (insertion)");
 
     printf("\n");
     printf("============Modified Doubly Linked List============\n");
@@ -166,7 +166,7 @@ void testing_backward(void) {
     test_dlinked_list(head, correct5, 12, "Removing tail");
 
     list_len = len_dlinked_list(tail, "backward");
-    test_result(list_len, 12, "List length: 12 nodes (removal)");
+    test_result(list_len, 12, "Length: 12 nodes (removal)");
 
     tail = remove_dnode_before_tail(tail, list_len, 7);
 
@@ -174,15 +174,15 @@ void testing_backward(void) {
     test_dlinked_list(head, correct6, 11, "Removing a middle node");
 
     list_len = len_dlinked_list(tail, "backward");
-    test_result(list_len, 11, "List length: 11 nodes (removal)");
+    test_result(list_len, 11, "Length: 11 nodes (removal)");
 
     tail = remove_dnode_before_tail(tail, list_len, 1);
 
     char correct7[10] = {'l', 'i', 'n', 'k', 'e', 'd', 'l', 'i', 's', 't'};
-    test_dlinked_list(head, correct7, 10, "Removing the node before head");
+    test_dlinked_list(head, correct7, 10, "Removing the node after head");
 
     list_len = len_dlinked_list(tail, "backward");
-    test_result(list_len, 10, "List length: 10 nodes (removal)");
+    test_result(list_len, 10, "Length: 10 nodes (removal)");
 
     printf("\n");
     printf("============Doubly Linked List After Removing Nodes============\n");
@@ -211,7 +211,7 @@ void testing_backward(void) {
         printf("\033[0;32m[Linked list was deleted successfully]\033[0;0m\n");
     }
     else {
-        printf("\033[0;31m[Linked list was not deleted successfully]\033[0;0m\n");
+        printf("\033[0;31m[Linked list was not deleted]\033[0;0m\n");
     }
 }
 

@@ -1,5 +1,5 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct stNode {
     char data;
@@ -18,6 +18,7 @@ stNode *make_stack(char arr[], size_t len) {
     stNode *prev_node = NULL;
 
     for (int i = 0; i < len; i++) {
+        // Allocating node and populating it with data.
         stNode *current_node = malloc(sizeof(stNode));
         current_node->data = arr[i];
         current_node->next = NULL;
@@ -42,6 +43,7 @@ stNode *push(stNode *top, char data) {
         exit(EXIT_FAILURE);
    } 
 
+   // Allocating node and populating it with data.
    stNode *new_node = malloc(sizeof(stNode));
    new_node->data = data;
    new_node->next = top;
@@ -99,8 +101,9 @@ void print_stack(stNode *top) {
     stNode *current_node = top;
 
     printf("Pos | Data\n");
+    printf("----+-----\n");
     for (int i = 0; current_node != NULL; i++) {
-        printf("%i | %c\n", i, current_node->data);
+        printf("%3i | %c\n", i, current_node->data);
 
         current_node = current_node->next;
     }

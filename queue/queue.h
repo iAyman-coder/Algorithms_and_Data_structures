@@ -13,7 +13,7 @@ typedef struct qNode {
 }qNode;
 
 /**
- * @brief From a queue data structure.
+ * @brief Form a queue data structure.
  * 
  * @param arr: Array of character that data will be taken from.
  * @param len: Length of the array.
@@ -26,12 +26,12 @@ typedef struct qNode {
 qNode **make_queue (char arr[], size_t len, qNode *front_and_rear_ptrs[2]);
 
 /**
- * @brief Enqueue (insert) a new node into a queue data structure.
+ * @brief Enqueue (insert) a new node into the end of a queue data structure.
  * 
  * @param rear: Pointer to the rear node.
  * @param data: Character that will be put in the new node what will be enqueued.
  * 
- * @return Pointer to teh new rear node.
+ * @return Pointer to the new rear node.
  */
 qNode *enqueue(qNode *rear, char data);
 

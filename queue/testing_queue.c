@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "testing_tools.h"
 #include "queue.h"
+#include "testing_tools.h"
 
 int main(void) {
     qNode *head_and_tail[2];
@@ -79,6 +79,6 @@ int main(void) {
         printf("\033[0;32m[queue was deleted successfully]\033[0;0m\n");
     }
     else {
-        printf("\033[0;31m[queue was not deleted successfully]\033[0;0m\n");
+        printf("\033[0;31m[queue was not deleted]\033[0;0m\n");
     }
 }

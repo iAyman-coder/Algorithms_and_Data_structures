@@ -1,5 +1,5 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct qNode {
     char data;
@@ -19,6 +19,7 @@ qNode **make_queue (char arr[], size_t len, qNode *front_and_rear_ptrs[2]) {
     qNode *prev_node = NULL;
 
     for (int i = 0; i < len; i++) {
+        // Allocating node and populating it with data.
         qNode *current_node = malloc(sizeof(qNode));
         current_node->data = arr[i];
         current_node->next = NULL;
@@ -31,12 +32,17 @@ qNode **make_queue (char arr[], size_t len, qNode *front_and_rear_ptrs[2]) {
         }
 
         if (prev_node != NULL) {
+            /*
+                This conditional links the previous node to the current
+                node only if there is actually a node to be linked to. 
+            */
             prev_node->next = current_node;
         }
 
         prev_node = current_node;
     }
 
+    // Putting the front and rear nodes pointer into the array of pointers.
     front_and_rear_ptrs[0] = front;
     front_and_rear_ptrs[1] = rear;
 
@@ -50,6 +56,7 @@ qNode *enqueue(qNode *rear, char data) {
         exit(EXIT_FAILURE);
     }
 
+    // Allocating node and populating with data.
     qNode *new_node = malloc(sizeof(qNode));
     new_node->data = data;
     new_node->next = NULL;
@@ -114,8 +121,9 @@ void print_queue(qNode *front) {
     qNode *current_node = front;
 
     printf("Pos | Data\n");
+    printf("----+-----\n");
     for (int i = 0; current_node != NULL; i++) {
-        printf("%i | %c\n", i, current_node->data);
+        printf("%3i | %c\n", i, current_node->data);
 
         current_node = current_node->next;
     }

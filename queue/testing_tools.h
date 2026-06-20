@@ -1,5 +1,5 @@
-#ifndef DSCUSTOMTESTS_H
-#define DSCUSTOMTESTS_H
+#ifndef QUEUETESTS_H
+#define QUEUETESTS_H
 
 
 #include <stddef.h>    // This is included for the size_t data type.

@@ -1,5 +1,5 @@
 #include "../algorithms/my_algorithms.h"
-#include "custom_tests.h"
+#include "testing_tools.h"
 
 int main(void) {
     int arr1[8] = {42, 12, 89, 7, 23, 54, 91, 31};

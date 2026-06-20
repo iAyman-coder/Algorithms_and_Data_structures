@@ -1,5 +1,5 @@
-#ifndef DSCUSTOMTESTS_H
-#define DSCUSTOMTESTS_H
+#ifndef HASHTABLETESTS_H
+#define HASHTABLETESTS_H
 
 
 #include <stdbool.h>    // Included for the bool data type.

@@ -1,5 +1,5 @@
-#ifndef DSCUSTOMTESTS_H
-#define DSCUSTOMTESTS_H
+#ifndef DOUBLYLINKEDLISTTESTS_H
+#define DOUBLYLINKEDLISTTESTS_H
 
 
 #include <stddef.h>    // This is included for the size_t data type.
