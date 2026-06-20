@@ -12,15 +12,12 @@ typedef struct User {
     struct User *next;
 }User;
 
-
 #define TABLE_SIZE  100
 
-static User *hash_table[TABLE_SIZE] = {NULL};
-
-static size_t USERS_NUM = 0;
+User *hash_table[TABLE_SIZE] = {NULL};
 
 
-unsigned int hash(char user_name[20]) {
+unsigned int hash(char *user_name) {
     /* This hash function is the djb2 hash function */
 
     unsigned int hash = 5381;
@@ -33,7 +30,7 @@ unsigned int hash(char user_name[20]) {
     return hash % TABLE_SIZE;
 }
 
-bool check_user_name(char user_name[20]) {
+bool check_user_name(char *user_name) {
     unsigned int indx = hash(user_name);
 
     User *current_node = hash_table[indx];
@@ -53,7 +50,28 @@ bool check_user_name(char user_name[20]) {
     return true;
 }
 
-bool insert_user(char user_name[20], char actual_name[40], char email[125], char job_title[30], int age) {
+bool insert_user(char *user_name, char *actual_name, char *email, char *job_title, int age) {
+    if (strlen(user_name) > 20) {
+        fprintf(stderr, "\033[0;31mError: User name can be at most 20 characters.\033[0;0m\n");
+        exit(EXIT_FAILURE);
+    }
+    else if (strlen(actual_name) > 40) {
+        fprintf(stderr, "\033[0;31mError: Actual name can be at most 40 characters.\033[0;0m\n");
+        exit(EXIT_FAILURE);
+    }
+    else if (strlen(email) > 125) {
+        fprintf(stderr, "\033[0;31mError: E-mail can be at most 125 characters.\033[0;0m\n");
+        exit(EXIT_FAILURE);
+    }
+    else if (strlen(job_title) > 30) {
+        fprintf(stderr, "\033[0;31mError: Job title can be at most 30 characters.\033[0;0m\n");
+        exit(EXIT_FAILURE);
+    }
+    else if (age > 100) {
+        fprintf(stderr, "\033[0;31mError: Age can't exceed 100 years.\033[0;0m\n");
+        exit(EXIT_FAILURE);
+    }
+
     if (!check_user_name(user_name)) {
         return false;
     }
@@ -72,12 +90,15 @@ bool insert_user(char user_name[20], char actual_name[40], char email[125], char
     hash_table[indx] = new_user;
     new_user->next = current_node;
 
-    USERS_NUM++;
-
     return true;
 }
 
-bool remove_user(char user_name[20]) {
+bool remove_user(char *user_name) {
+    if (strlen(user_name) > 20) {
+        fprintf(stderr, "\033[0;31mError: User name can be at most 20 characters.\033[0;0m\n");
+        exit(EXIT_FAILURE);
+    }
+
     unsigned int indx = hash(user_name);
 
     if (hash_table[indx] == NULL) {
@@ -116,12 +137,15 @@ bool remove_user(char user_name[20]) {
 
     free(current_node);
 
-    USERS_NUM--;
-
     return true;
 }
 
-User *search_user(char user_name[20]) {
+User *search_user(char *user_name) {
+    if (strlen(user_name) > 20) {
+        fprintf(stderr, "\033[0;31mError: User name can be at most 20 characters.\033[0;0m\n");
+        exit(EXIT_FAILURE);
+    }
+
     unsigned int indx = hash(user_name);
 
     User *current_node = hash_table[indx];
@@ -138,7 +162,23 @@ User *search_user(char user_name[20]) {
 }
 
 size_t get_users_num(void) {
-    return USERS_NUM;
+    size_t users_num = 0;
+
+    for (int i = 0; i < TABLE_SIZE; i++) {
+        if (hash_table[i] == NULL) {
+            continue;
+        }
+
+        User *current_node = hash_table[i];
+
+        while (current_node != NULL) {
+            users_num++;
+
+            current_node = current_node->next;
+        }
+    }
+
+    return users_num;
 }
 
 bool is_hash_table_empty(void) {
@@ -151,20 +191,18 @@ bool is_hash_table_empty(void) {
     return true;
 }
 
-void print_user(char user_name[20]) {
-    if (check_user_name(user_name)) {
-        printf("User: %s doesn't exist\n", user_name);
+void print_user(User *usr) {
+    if (usr == NULL) {
+        printf("User doesn't exist\n");
         return;
     }
 
-    User *found_user = search_user(user_name);
-
-    printf("%s information.\n", user_name);
+    printf("%s information.\n", usr->user_name);
     printf("==================================\n");
-    printf("Name: %s\n", found_user->actual_name);
-    printf("E-mail: %s\n", found_user->email);
-    printf("Job Title: %s\n", found_user->job_title);
-    printf("Age: %i\n", found_user->age);
+    printf("Name: %s\n", usr->actual_name);
+    printf("E-mail: %s\n", usr->email);
+    printf("Job Title: %s\n", usr->job_title);
+    printf("Age: %i\n", usr->age);
 }
 
 void unload_users(void) {
@@ -188,5 +226,7 @@ void unload_users(void) {
 
             current_node = next_node;
         }
+
+        hash_table[i] = NULL;
     }
 }

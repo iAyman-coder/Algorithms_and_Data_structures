@@ -17,24 +17,6 @@ typedef struct User {
 }User;
 
 /**
- * @brief Turn a user name into an index in the hash table.
- * 
- * @param user_name: String containing the user name that will be hashed.
- * 
- * @return Index in the hash table.
- */
-unsigned int hash(const char user_name[20]);
-
-/**
- * @brief Check if user_name is available to use.
- * 
- * @param user_name: String containing the user name that will be hashed.
- * 
- * @return True if user_name is available. false if user_name has already been used.
- */
-bool check_user_name(const char user_name[20]);
-
-/**
  * @brief Insert a new user into the hash table.
  * 
  * @param user_name: String containing the user name that will be hashed.
@@ -45,7 +27,7 @@ bool check_user_name(const char user_name[20]);
  * 
  * @return True if user was inserted, false if not. 
  */
-bool insert_user(char user_name[20], char actual_name[40], char email[125], char job_title[30], int age);
+bool insert_user(char *user_name, char *actual_name, char *email, char *job_title, int age);
 
 /**
  * @brief Delete user from the hash table.
@@ -54,7 +36,7 @@ bool insert_user(char user_name[20], char actual_name[40], char email[125], char
  * 
  * @return True if user was removed successfully, false if not.
  */
-bool remove_user(char user_name[20]);
+bool remove_user(char *user_name);
 
 /**
  * @brief Search for user in the hash table.
@@ -63,7 +45,7 @@ bool remove_user(char user_name[20]);
  * 
  * @return If found, pointer to the node that contins information about user. If not found, NULL.
  */
-User *search_user(char user_name[20]);
+User *search_user(char *user_name);
 
 /**
  * @brief Get how many users exist in the hash table.
@@ -86,11 +68,11 @@ bool is_hash_table_empty(void);
 /**
  * @brief Print information about found user.
  * 
- * @param user_name: String containing the user name that will be hashed.
+ * @param usr: User node that was retrieved by search_user function.
  * 
  * @return Nothing (void).
  */
-void print_user(char user_name[20]);
+void print_user(User *usr);
 
 /**
  * @brief Delete all users from the hash table.
